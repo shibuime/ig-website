@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<title>Copy of Dark_Earth - Goo Create</title>
+	<script>
+	// If you try to load a scene without a server, you're gonna have a bad time
+	if (window.location.protocol==='file:') {
+		console.warn('Looks like you\'re running this Goo Create directly from your file system (file://). It may not work. Read more: https://learn.goocreate.com/manual/publishing/self-hosting/');
+		/*
+
+		Loading scenes uses AJAX requests, which require that the webpage is
+		accessed via http. Setting up a web server is not very complicated, and
+		there are lots of free options. Here are some suggestions that will do
+		the job and do it well, but there are lots of other options.
+
+		- Windows
+		Apache (http://httpd.apache.org/docs/current/platform/windows.html)
+		nginx (http://nginx.org/en/docs/windows.html)
+		mongoose (https://code.google.com/p/mongoose/)
+
+		- Linux
+		Most distributions have neat packages for Apache (http://httpd.apache.org/)
+		and nginx (http://nginx.org/en/docs/windows.html) and about a gazillion
+		other options that didn't fit here. One option is calling
+		'python -m SimpleHTTPServer' inside the unpacked folder if you have
+		python installed.
+
+		- Mac OS X
+		Most Mac users will have Apache web server bundled with the OS.
+		Read this to get started: http://osxdaily.com/2012/09/02/start-apache-web-server-mac-os-x/
+
+		*/
+	}
+
+	// Use goo without require. Needed to make pack dependencies in external scripts work.
+	window.goo = {useOwnRequire: true};
+	</script>
+
+	<!-- disable native mobile pinch-to-zoom, replacing with the Goo Engine zoom -->
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+	
+
+	<!-- og -->
+	
+	<meta property="og:image" content="res/c6c0eaff94088803ea991059df40d68ba7fe3c38.jpg">
+	
+	
+	<meta property="og:title" content="Copy of Dark_Earth"/>
+	<meta property="og:description" content="Made with Goo Create">
+	<meta property="og:updated_time" content="2017-03-21T19:35:56.884667+00:00"/>
+	<meta property="og:site_name" content="Goo Create"/>
+	<meta property="og:type" content="website"/>
+	<!-- /og -->
+
+	<link rel="icon" href="favicon.png" type="image/png" />
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+
+	
+	<script src="js/goo/lib/goo.js"></script>
+	
+	<script src="js/goo/lib/cannon/cannon.min.js"></script>
+	
+	<script src="js/goo/lib/fsmpack.js"></script>
+	
+	<script src="js/goo/lib/quadpack.js"></script>
+	
+	<script src="js/goo/lib/timelinepack.js"></script>
+	
+	<script src="js/goo/lib/scriptpack.js"></script>
+	
+	<script src="js/goo/lib/passpack.js"></script>
+	
+	<script src="js/goo/lib/particlepack.js"></script>
+	
+	<script src="js/goo/lib/animationpack.js"></script>
+	
+	<script src="js/goo/lib/physicspack.js"></script>
+	
+
+	
+
+	
+	
+</head>
+
+<body class="standard-theme ">
+	<!--
+	This screen is shown right away when the page and contains a progress bar
+	and the scene name and description. It stays visible until the scene is
+	fully loaded into the engine and then it is faded out to reveal the	canvas
+	screen below.
+	-->
+	<div id="loading-screen" class="visible">
+		<div class="content">
+			<div id="progress-bar">
+				<div class="logo"></div>
+				<div id="progress"></div>
+			</div>
+			<h1>Copy of Dark_Earth</h1>
+			
+		</div>
+	</div>
+
+	<!--
+	This screen is shown after the scene is loaded. It contains the canvas where
+	the scene is displayed as well as the bottom bar with the scene	name, share
+	buttons, etc.
+	-->
+	<div id="canvas-screen">
+		<div id="canvas-outer">
+			<div id="canvas-inner"><!-- The canvas is added here --></div>
+		</div>
+
+
+
+	</div>
+
+
+
+
+	<p onclick="goo.SystemBus.emit('prev')" style="cursor: pointer; background: black; color: white; font-size: 13px; position: relative; display: inline-block; padding: 4px; margin: 10px;">
+		Prev
+	</p>
+	<p onclick="goo.SystemBus.emit('next')" style="cursor: pointer; background: black; color: white; font-size: 13px; position: relative; display: inline-block; padding: 4px; margin: 10px;">
+		Next
+	</p>
+
+	<p onclick="goo.SystemBus.emit('setCameraPosition3')" style="cursor: pointer; background: black; color: white; font-size: 13px; position: relative; display: inline-block; padding: 4px; margin: 10px;">
+		setCameraPosition3
+	</p>
+
+	<p onclick="goo.SystemBus.emit('setCameraPosition0')" style="cursor: pointer; background: black; color: white; font-size: 13px; position: relative; display: inline-block; padding: 4px; margin: 10px;">
+		setCameraPosition0
+	</p>
+
+	<p onclick="goo.SystemBus.emit('showNumbers')" style="cursor: pointer; background: black; color: white; font-size: 13px; position: relative; display: inline-block; padding: 4px; margin: 10px;">
+		showNumbers
+	</p>
+
+	<p onclick="goo.SystemBus.emit('hideNumbers')" style="cursor: pointer; background: black; color: white; font-size: 13px; position: relative; display: inline-block; padding: 4px; margin: 10px;">
+		hideNumbers
+	</p>
+
+	
+	
+
+	<div id="fallback" style="background-image: url(res/c6c0eaff94088803ea991059df40d68ba7fe3c38.jpg)">
+		<h1>WebGL not supported or not enabled</h1>
+	</div>
+
+
+	<!-- Handles the sizing, scrolling and alignment of the canvas. -->
+	<script src="js/goo/CanvasWrapper.js"></script>
+
+	<!-- Checks if the browser supports WebGL. -->
+	<script src="js/goo/WebGLSupport.js"></script>
+
+	<!-- Required for the serve.js (gsrv). -->
+	<script src="js/goo/GSRVMock.js"></script>
+
+	<!-- Oh old browsers! -->
+	<!--[if IE 9]><script src="js/goo/shims.js"></script><![endif]-->
+
+	<!--
+	Main file which handles the loading of the scene into the engine,
+	displays the fallback messages (see HTML above), sets up event
+	listeners, etc.
+	-->
+	<script src="js/goo/main.js"></script>
+</body>
+</html>
