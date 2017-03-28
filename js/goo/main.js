@@ -63,6 +63,7 @@
 		}).then(function () {
 			show('canvas-screen');
 			hide('loading-screen');
+			document.getElementById('hero-title').classList.add('ready')
 			CanvasWrapper.show();
 			CanvasWrapper.resize();
 
@@ -195,7 +196,8 @@
 	 */
 	function onLoadProgress(handled, total) {
 		var loadedPercent = (100 * handled / total).toFixed();
-		document.getElementById('progress').style.width = loadedPercent + '%';
+		document.getElementById('progress').style.transform = ' translateX('+loadedPercent + '%)';
+		document.querySelector('#loading-screen i').innerHTML = loadedPercent + '<span>%</span>';
 
 		window.postMessage({handled: handled, total: total, loadedPercent: loadedPercent}, '*')
 	}

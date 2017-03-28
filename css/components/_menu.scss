@@ -1,0 +1,83 @@
+@import '../globals';
+
+
+
+
+//menu
+#menu{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 30px 35px;
+  @include display-flex;
+  @include justify-content(space-between);
+  @include align-items(center);
+
+  li{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 20px;
+    a{
+      display: block;
+      padding: 5px 0;
+      color: #fff;
+      font-size: 15px;
+      text-decoration: none;
+      position: relative;
+
+      &:not(.login){
+        &:after{
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 2px;
+          bottom: -2px;
+          background-color: $green;
+          @include transition(transform .25s $easing);
+          @include transform-origin(left);
+          @include transform(scale(0,1))
+        }
+
+        &:hover, &.active{
+          &:after{
+            @include transform-origin(right);
+            @include transform(scale(1,1))
+          }
+        }
+      }
+
+      &.login{
+        padding: 2px 12px;
+        border-radius: 30px;
+        box-shadow: 0 0 0 1px #fff;
+        @include transition(box-shadow .2s $easing);
+        &:before{
+          content: '';
+          @include border-radius(50px);
+          @include fullAbsBg;
+          z-index: -1;
+          @include transition(opacity .2s $easing);
+          @include horizontal-gradient($blue, $green);
+          opacity: 0;
+        }
+        &:hover{
+          box-shadow:  0 0 0 4px rgba(18, 168, 192, 0.6);
+          &:before{
+            opacity: .8;
+          }
+        }
+      }
+
+
+    }
+  }
+
+
+
+}
+
+
+

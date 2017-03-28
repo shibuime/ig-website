@@ -4,162 +4,72 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
 	<title>Intelligo Group</title>
+
 	<script>
-	// Use goo without require. Needed to make pack dependencies in external scripts work.
-	window.goo = {useOwnRequire: true};
+		// Use goo without require. Needed to make pack dependencies in external scripts work.
+		window.goo = {useOwnRequire: true};
 	</script>
+
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
+
+
+	<meta property="og:title" content="Intelligo Group"/>
+	<meta property="og:description" content="Intelligo Group" />
+	<meta property="og:url" content="http://intelligo-group.com" />
+	<meta property="og:image:url" content="http://intelligo-group.com/images/open-graph.png"/>
+	<meta property="og:image:width" content="1200"/>
+	<meta property="og:image:height" content="630"/>
 
 	<!-- disable native mobile pinch-to-zoom, replacing with the Goo Engine zoom -->
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-	
 
-	<!-- og -->
-	
-	<meta property="og:image" content="res/c6c0eaff94088803ea991059df40d68ba7fe3c38.jpg">
-	
-	
-	<meta property="og:title" content="Copy of Dark_Earth"/>
-	<meta property="og:description" content="Made with Goo Create">
-	<meta property="og:updated_time" content="2017-03-21T19:35:56.884667+00:00"/>
-	<meta property="og:site_name" content="Goo Create"/>
-	<meta property="og:type" content="website"/>
-	<!-- /og -->
+	<!-- css  -->
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
 
-	<link rel="icon" href="favicon.png" type="image/png" />
-	<link rel="stylesheet" type="text/css" href="style/style.css">
 
-	
+	<!-- goo -->
 	<script src="js/goo/lib/goo.js"></script>
-	
 	<script src="js/goo/lib/cannon/cannon.min.js"></script>
-	
 	<script src="js/goo/lib/fsmpack.js"></script>
-	
 	<script src="js/goo/lib/quadpack.js"></script>
-	
 	<script src="js/goo/lib/timelinepack.js"></script>
-	
 	<script src="js/goo/lib/scriptpack.js"></script>
-	
 	<script src="js/goo/lib/passpack.js"></script>
-	
 	<script src="js/goo/lib/particlepack.js"></script>
-	
 	<script src="js/goo/lib/animationpack.js"></script>
-	
 	<script src="js/goo/lib/physicspack.js"></script>
-	
 
 
-
-	<style>
-		html, body{
-			font-family: 'Raleway', sans-serif;
-
-		}
-
-		#hero{
-			position: fixed;
-			top: 70px;
-			left: 70px;
-			bottom: 70px;
-			right: 70px;
-			overflow: hidden;
-			transition: all .5s;
-		}
-
-		#hero:before{
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: calc(100vh - 140px);
-			background: url(css/img/hero.jpg) bottom no-repeat;
-			background-size: cover;
-		}
-
-		#hero.fold{
-			//transform: translateY(30px);
-			bottom: calc(100vh - 70px);
-		}
+	<!-- js -->
+	<script src="js/wheel-indicator.js"></script>
 
 
-
-
-		#hero-title{
-			position: fixed;
-			top: 100px;
-			left: 120px;
-			color: #fff;
-		}
-
-		#hero-title h1{
-			font-size: 82px;
-			font-weight: 600;
-			margin-bottom: 10px;
-		}
-		#hero-title h2{
-			font-size: 38px;
-			font-weight: 300;
-			margin-bottom: 20px;
-		}
-
-
-		#logo{
-			position: fixed;
-			left: 35px;
-			top: 27px;
-		}
-
-		#menu{
-			position: fixed;
-			right: 35px;
-			top: 22px;
-			white-space: nowrap;
-			margin: 0;
-			padding: 0;
-		}
-		#menu li{
-			display: inline-block;
-			vertical-align: middle;
-			margin-left: 20px;
-		}
-
-		#menu li a{
-			display: block;
-			color: #fff;
-			font-size: 15px;
-			text-decoration: none;
-		}
-
-		#menu li a.login{
-			padding: 2px 10px;
-			border-radius: 30px;
-			border: 1px solid;
-		}
-
-
-	</style>
-
-
-
+	<!-- font  -->
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,600,700" rel="stylesheet">
+
+
+
+	<!--************ analytics ************-->
+
+
+
+	<!--************ analytics ENDS ************-->
 
 </head>
 
-<body class="standard-theme body">
+<body class="hp">
+<div id="wrapper" class="slide-0">
 
 
 	<div id="loading-screen" class="visible">
-		<div class="content">
-			<div id="progress-bar">
-				<div id="progress"></div>
-			</div>
-			<h1>Intelligo Group</h1>
-			
-		</div>
+		<div id="progress"></div>
+		<i></i>
 	</div>
 
 
@@ -167,51 +77,46 @@
 		<div id="canvas-outer">
 			<div id="canvas-inner"><!-- The canvas is added here --></div>
 		</div>
-
 	</div>
+
 
 
 	<div id="hero"></div>
 
 
-	<ul id="menu">
-		<li>
-			<a href="/services">Services</a>
-		</li>
-		<li>
-			<a href="/product">Product</a>
-		</li>
-		<li>
-			<a href="/case-studies">Case Studies</a>
-		</li>
-		<li>
-			<a href="/company">Company</a>
-		</li>
-		<li>
-			<a href="/contact-us">Contact</a>
-		</li>
-		<li>
-			<a target="_blank" class="login" href="/login">Login</a>
-		</li>
-	</ul>
-	<div id="logo">
-		<img width="110px" src="css/img/logo.svg"/>
-	</div>
 
 
 	<div id="hero-title">
 		<h1>
-		Intelligo<br/>
-		Group
+			<span data-attr="Intelligo"></span>
+			<span data-attr="Group"></span>
 		</h1>
 		<h2>
-			Innovative<br/>
-			intelligence,<br/>
-			actionable<br/>
-			insights
+			<span data-attr="Innovative"></span>
+			<span data-attr="intelligence,"></span>
+			<span data-attr="iactionable"></span>
+			<span data-attr="insights"></span>
 		</h2>
-	</div>
 
+		<div class="Button scroll">
+			<span class="label">Our Technology</span>
+
+
+
+			<svg width="40px" height="40px" viewBox="211 14 40 40">
+				<circle  stroke="#FFFFFF" stroke-width="1" fill="none" cx="231" cy="34" r="13"></circle>
+				<g>
+					<path d="M224.733438,37.8612881 L237.561483,37.8612881" id="Path-13" stroke="#FFFFFF" stroke-width="1" fill="none" transform="translate(231.147461, 37.861288) rotate(-270.000000) translate(-231.147461, -37.861288) "></path>
+					<polyline id="Path-14" stroke="#FFFFFF" stroke-width="1" fill="none" transform="translate(231.105673, 42.246975) rotate(-270.000000) translate(-231.105673, -42.246975) " points="229.008425 37.823351 233.355673 42.1705988 228.855673 46.6705988"></polyline>
+				</g>
+			</svg>
+		</div>
+
+
+		<svg width="26px" height="151px" viewBox="124 636 26 151">
+			<polyline id="Path-2" stroke="#FFFFFF" stroke-width="6" fill="none" points="128 640 128 777.990948 146.064685 759.926262"></polyline>
+		</svg>
+	</div>
 
 
 
@@ -241,15 +146,48 @@
 	</p>
 	-->
 
-	
-	
+
 
 	<div id="fallback" style="background-image: url(res/c6c0eaff94088803ea991059df40d68ba7fe3c38.jpg)">
 		<h1>WebGL not supported or not enabled</h1>
 	</div>
 
 
-	<!-- Handles the sizing, scrolling and alignment of the canvas. -->
+
+	<!-- MENU -->
+	<nav id="menu">
+		<div id="logo">
+			<img width="110px" src="css/img/logo.svg"/>
+		</div>
+
+		<ul id="links">
+			<li>
+				<a href="/services">Services</a>
+			</li>
+			<li>
+				<a href="/product">Product</a>
+			</li>
+			<li>
+				<a href="/case-studies">Case Studies</a>
+			</li>
+			<li>
+				<a href="/company">Company</a>
+			</li>
+			<li>
+				<a href="/contact-us">Contact</a>
+			</li>
+			<li>
+				<a target="_blank" class="login" href="/login">Login</a>
+			</li>
+		</ul>
+	</nav>
+
+</div>
+
+
+
+
+<!-- Handles the sizing, scrolling and alignment of the canvas. -->
 	<script src="js/goo/CanvasWrapper.js"></script>
 
 	<!-- Checks if the browser supports WebGL. -->
@@ -268,58 +206,10 @@
 	-->
 	<script src="js/goo/main.js"></script>
 
-	<script src="js/wheel-indicator.js"></script>
 
 
-	<script>
 
-		var screen = 0;
-		var lastScreen = 4;
-
-
-		var indicator = new WheelIndicator({
-			elem: document.querySelector('.body'),
-			callback: function(e){
-
-				if(e.direction == "up" && screen > 0){
-					screen = screen-1;
-					console.log("up", screen);
-
-					goToScreen(screen);
-				}
-				if(e.direction == "down" && screen < lastScreen){
-					screen = screen+1;
-					console.log("down",screen);
-
-					goToScreen(screen);
-				}
-
-				if(screen > 0 && screen < 4){
-					goo.SystemBus.emit('showNumbers')
-				}
-				else{
-					goo.SystemBus.emit('hideNumbers')
-				}
-
-
-				if(screen > 0){
-					document.getElementById('hero').classList.add('fold');
-				}
-				else{
-					document.getElementById('hero').classList.remove('fold');
-				}
-
-			}
-		});
-
-
-		function goToScreen(num){
-			if(num == 0 || num > 4) return;
-			goo.SystemBus.emit('setCameraPosition'+(num-1))
-		}
-
-
-	</script>
+	<script src="js/script.js"></script>
 
 
 </body>
