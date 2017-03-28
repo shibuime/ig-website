@@ -1,8 +1,6 @@
 
-import './hp';
+//import './hp';
 
-var screen = 0;
-var lastScreen = 4;
 
 
 // ------------------------- INIT -------------------- //
@@ -12,11 +10,11 @@ function init(){
 }
 
 
-
-
 // ------------------------- LOAD -------------------- //
 // ------------------------- LOAD -------------------- //
 window.addEventListener('load', init);
+
+
 
 
 

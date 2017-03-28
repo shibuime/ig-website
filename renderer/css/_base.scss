@@ -1,0 +1,259 @@
+@import "./css_variables";
+@import "./mixins";
+
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, q, small, strong, sub, sup, dl, dt, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td
+{
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+article, aside, figure, figure img, figcaption, footer, header, nav, section, video, object{
+  display: block
+}
+
+a img{
+  border: 0
+}
+
+figure{
+  position: relative
+}
+figure img{
+  width: 100%
+}
+*{
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+li{
+  list-style: none
+}
+
+.show{
+  display: block
+}
+
+.hide{
+  display: none
+}
+.left{
+  float: left
+}
+.right{
+  float: right
+}
+.t_center{
+  text-align: center
+}
+.clear{
+  clear: both
+}
+html, body{
+  font-family: $font-body;
+  line-height: 1.35;
+  font-weight: 400;
+  overflow: hidden;
+  font-size: 10px;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6{
+  font-weight: 400;
+  font-family: $font-body;
+}
+
+
+pre, code{
+  font-weight: 400;
+  font-family: $font-code;
+  font-size: 1.25rem;
+}
+
+::-moz-selection{
+  color: #fff;
+  text-shadow: none;
+  background-color: $blue;
+}
+
+
+::selection{
+  color: #fff;
+  text-shadow: none;
+  background-color: $blue
+}
+
+a,a:hover,
+a.active,
+a:visited{
+  text-decoration: none;
+  outline: none;
+}
+
+a:focus{
+  -moz-outline-style: none
+}
+
+a, a:active, a:focus{
+  outline: none
+}
+
+input, textarea, button, select{
+  border: none;
+  padding: 0;
+  margin: 0;
+  -webkit-appearance: none;
+  &:focus{
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+
+
+.upper{
+  text-transform: uppercase
+}
+
+.inline_block_mid{
+  display: inline-block;
+  vertical-align: middle
+
+}
+
+.linethrough{
+  text-decoration: line-through
+}
+
+@include keyframes(iconActive){
+  0%, 100%{
+    @include transform(scale(1));
+  }
+  60%{
+    @include transform(scale(1.1));
+  }
+}
+
+@include keyframes(fadeIn){
+  from{
+    opacity: .001
+  }
+  to{
+    opacity: .99
+  }
+}
+
+@include keyframes(fadeOut){
+  from{
+    opacity: .99
+  }
+  to{
+    opacity: .001
+  }
+}
+
+@include keyframes(bounce){
+  0%, 100%{
+    @include transform(translateY(0));
+
+  }
+  60%{
+    @include transform(translateY(-2px));
+  }
+}
+
+@include keyframes(cardIn){
+  from{
+    opacity: 0.01;
+    @include transform(translateY(20px));
+
+  }
+  to{
+    opacity: 1;
+    @include transform(translateY(0));
+  }
+}
+
+
+
+
+@include keyframes(softFromBottom){
+  from{
+    opacity: 0.01;
+    @include transform(translateY(10px));
+
+  }
+  to{
+    opacity: 1;
+    @include transform(translateY(0));
+  }
+}
+
+@include keyframes(softFromTop){
+  from{
+    opacity: 0.01;
+    @include transform(translateY(-10px));
+
+  }
+  to{
+    opacity: 1;
+    @include transform(translateY(0));
+  }
+}
+
+
+
+// ----------- keyframes ------------------  //
+
+@include keyframes(breath){
+  0%, 100%{
+    @include transform(matrix(1, 0, 0, 1, 0, 0))
+
+  }
+  100%{
+    @include transform(matrix(1.05, 0, 0, 1.05, 0, 0))
+  }
+}
+
+@include keyframes(spin){
+  from{
+    @include transform(rotate(0deg))
+
+  }
+  to{
+    @include transform(rotate(360deg))
+  }
+}
+
+
+@include keyframes(scaleIn){
+  from{
+    opacity: 0.01;
+    @include transform(matrix(0.9, 0, 0, 0.9, 0, 0))
+
+  }
+  to{
+    opacity: 1;
+    @include transform(matrix(1, 0, 0, 1, 0, 0))
+  }
+}
+
+
+
+@include keyframes(scaleOut){
+  from{
+    opacity: 0.99;
+    @include transform(matrix(1, 0, 0, 1, 0, 0))
+  }
+  to{
+    opacity: 0.01;
+    @include transform(matrix(0.7, 0, 0, 0.7, 0, 0))
+  }
+}
+
+
+
+
