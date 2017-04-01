@@ -20,9 +20,9 @@ export default class MainMenu extends Component {
         return (
 
             <nav className={className}>
-                <div id="logo">
+                <Link to="/" id="logo">
                     <img width="110px" src="/resources/images/logo.svg"/>
-                </div>
+                </Link>
 
                 <ul id="links">
                     <li>
@@ -41,7 +41,7 @@ export default class MainMenu extends Component {
                         <Link to="/contact-us">Contact</Link>
                     </li>
                     <li>
-                        <Link to="_blank" className="login" href="/login">Login</Link>
+                        <Link target="_blank" className="login" to="/login">Login</Link>
                     </li>
                 </ul>
             </nav>

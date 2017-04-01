@@ -16367,8 +16367,8 @@ var MainMenu = function (_Component) {
                 'nav',
                 { className: className },
                 _react2.default.createElement(
-                    'div',
-                    { id: 'logo' },
+                    _reactRouter.Link,
+                    { to: '/', id: 'logo' },
                     _react2.default.createElement('img', { width: '110px', src: '/resources/images/logo.svg' })
                 ),
                 _react2.default.createElement(
@@ -16424,7 +16424,7 @@ var MainMenu = function (_Component) {
                         null,
                         _react2.default.createElement(
                             _reactRouter.Link,
-                            { to: '_blank', className: 'login', href: '/login' },
+                            { target: '_blank', className: 'login', to: '/login' },
                             'Login'
                         )
                     )
