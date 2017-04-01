@@ -1,0 +1,57 @@
+//$font-code: 'SF Mono', 'Fira Mono', monospace;
+//$font-body: -apple-system, BlinkMacSystemFont, "Lato", sans-serif;
+
+$font-body: 'Raleway', sans-serif;
+
+//$easing : cubic-bezier( 0.6, 0.2, 0.5, 0.9)
+$easing: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+
+$toggleMenuTransition: 0.3s;
+$modalTransition: 0.2s;
+
+
+$grey-light: #58595B;
+$grey-dark: #1F2534;
+$green: #59DCA8;
+$turquoise: #14A8C0;
+$turquoise-dark: #345A71;
+$blue: #12A8C0;
+$purple: #ECA8FF;
+$yellow: #FFFFA7;
+$red: #FF5779;
+
+
+
+$white-strong: rgba(255, 255, 255, 0.7);
+$white-light: rgba(255, 255, 255, 0.5);
+$white-light-mid: rgba(255, 255, 255, 0.3);
+$white-light-washed: rgba(255, 255, 255, 0.1);
+
+
+
+$master-facebook: #324D8F;
+$master-twitter: #0295F3;
+$master-linkedin: #1B85BC;
+$master-trello: #026AA7;
+$master-gmail: #bb0000;
+$master-gplus: #d34836;
+$master-vimeo: #1ab7ea;
+$master-slack: #3eb991;
+$master-buffer: #323b43;
+$master-pinterest: #bd081c;
+$master-appstore: #3C94EB;
+$master-google-play: #C74665;
+$master-google-blue: #4285f4;
+
+$portrait: " all and (orientation: portrait) ";
+$landscape: " all and (orientation: landscape)";
+
+
+$media-super-slim: "only screen and (max-width : 370px)";
+$media-very-slim: "only screen and (max-width : 450px)";
+$media-slim: "only screen and (max-width : 580px)";
+$media-lass-than-wide: "only screen and (max-width : 680px)";
+$media-wide: "only screen and (min-width : 680px)";
+
+

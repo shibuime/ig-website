@@ -1,0 +1,132 @@
+
+@import "../../css/globals";
+
+.Button{
+	position: relative;
+	text-align: center;
+	padding: 6px 20px 7px;
+	@include border-radius(6px);
+	@include unslectable;
+	@include inline-block-mid;
+	cursor: pointer;
+	color: #fff;
+	@include transition(opacity .2s);
+	font-family: $font-body;
+
+	&:hover{
+		opacity: .9;
+	}
+
+	&.Button-fat{
+		padding: 10px 30px;
+		.label{
+			font-size: 1.6rem;
+		}
+		&.With-icon{
+			padding: 4px 20px 4px 30px;
+			.label{
+				margin-bottom: 3px;
+			}
+		}
+	}
+
+
+	&.Button-small{
+		padding: 1px 3px 3px 8px;
+		opacity: .7;
+		&:hover{
+			opacity: 1 !important;
+		}
+
+		.Icon{
+			font-size: 1.6rem;
+		}
+		.label{
+			font-size: 1.25rem;
+		}
+
+		&.Button-secondary-fill{
+			opacity: .8;
+			padding: 1px 8px 2px 3px;
+			.Icon{
+				font-size: 2.1rem;
+				margin-left: 0;
+				margin-right: 3px;
+			}
+		}
+	}
+
+	&.Button-primary{
+		@include horizontal-gradient(#30BFCE, #36DAC6);
+		&:before{
+			content: '';
+			@include fullAbsBg;
+			@include border-radius(6px);
+			z-index: -1;
+			opacity: 0;
+			@include horizontal-gradient(#36DAC6, #30BFCE);
+			@include transition(opacity .2s $easing);
+		}
+		&:hover:before{
+			opacity: 1;
+		}
+	}
+	&.Button-secondary{
+		background-color: transparent;
+		color: $grey-5;
+		box-shadow: inset 0 0 0 1px $grey-4;
+	}
+
+
+	&.Button-secondary-fill{
+		background-color: $grey-1;
+		color: $grey-4;
+	}
+
+	&.Button-action{
+		background-color: $blue;
+	}
+
+	&.Button-alert{
+		background-color: transparent;
+		color: $grey-3;
+		box-shadow: inset 0 0 0 1px $red;
+	}
+
+	.Icon, .label{
+		@include inline-block-mid
+	}
+	.Icon{
+		font-size: 3rem;
+		margin-left: 3px;
+	}
+	.label{
+		font-size: 1.4rem;
+	}
+
+}
+
+
+
+
+
+//dark theme
+.dark .Button{
+
+	&.Button-secondary:not(.Button-secondary-grey){
+		color: $white-strong;
+		box-shadow: inset 0 0 0 1px $white-light;
+	}
+
+	&.Button-secondary-fill{
+		background-color: $dark-bg;
+		color: $white-light;
+	}
+
+
+}
+
+
+
+
+

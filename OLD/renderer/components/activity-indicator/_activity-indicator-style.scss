@@ -1,0 +1,90 @@
+
+@import "../../css/globals";
+
+.ActivityIndicator{
+	z-index: 10;
+
+
+	&.line{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100vw;
+		height: 2px;
+		overflow: hidden;
+		background-color: lighten($blue, 30%);
+		.line{
+			@include fullAbsBg;
+			@include horizontal-gradient($blue, $turquoise);
+			@include animation(line 1.5s $easing infinite);
+		}
+	}
+
+
+
+
+	&.center-svg{
+		text-align: center;
+		@include center-transform;
+		@include round;
+		width: 70px;
+		height: 70px;
+		background-color: $grey-3;
+		padding: 15px;
+		svg{
+			will-change: transform;
+			margin: auto;
+			display: block;
+			fill: none;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			stroke-width: 1.5px;
+			stroke: $grey-3;
+
+			path{
+				stroke-dasharray: 99;
+				@include animation(centerSvg 3s infinite);
+			}
+		}
+	}
+}
+
+
+@include keyframes(centerSvg){
+	0%, 100%{
+		stroke-dashoffset: 100;
+	}
+	50%{
+		stroke-dashoffset: 0;
+	}
+}
+
+@include keyframes(line){
+	from{
+		@include transform(translateX(-100%));
+	}
+	to{
+		@include transform(translateX(100%));
+	}
+}
+
+
+
+
+//dark
+.dark .ActivityIndicator {
+
+	&.line{
+		background-color: darken($blue, 30%);
+	}
+
+	&.center-svg{
+		background-color: $grey-5;
+	}
+
+}
+
+
+
+
+

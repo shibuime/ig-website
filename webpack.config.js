@@ -1,19 +1,18 @@
+
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: [
-        './renderer/renderer.js',
-        'webpack/hot/dev-server',
-        'webpack-dev-server/client?http://localhost:8081'
-    ],
+    entry: './app/main.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
-        publicPath: "http://localhost:8081/renderer/",
+        path: __dirname + '/app',
+        filename: 'bundle.js'
     },
     devtool: 'source-map',
-    target: 'electron-renderer',
+    devServer: {
+        inline: true,
+        contentBase: './app',
+        port: 8100
+    },
     module: {
         loaders: [
             {
@@ -41,11 +40,8 @@ module.exports = {
             }
         ]
     },
+    watch: true,
     resolve: {
         extensions: ['.js', '.jsx']
-    },
-    /*plugins: [new HtmlWebpackPlugin({
-        filename: 'index.html',
-        template: 'renderer/template.html'
-    })]*/
+    }
 };

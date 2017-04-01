@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Intelligo Group</title>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
+
+
+    <meta property="og:title" content="Intelligo Group"/>
+    <meta property="og:description" content="Intelligo Group" />
+    <meta property="og:url" content="http://intelligo-group.com" />
+    <meta property="og:image:url" content="http://intelligo-group.com/images/open-graph.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+
+    <!-- disable native mobile pinch-to-zoom, replacing with the Goo Engine zoom -->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+
+    <!-- font  -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,600,700" rel="stylesheet">
+
+
+
+    <!-- goo -->
+    <script src="js/goo/lib/goo.js"></script>
+    <script src="js/goo/lib/cannon/cannon.min.js"></script>
+    <script src="js/goo/lib/fsmpack.js"></script>
+    <script src="js/goo/lib/quadpack.js"></script>
+    <script src="js/goo/lib/timelinepack.js"></script>
+    <script src="js/goo/lib/scriptpack.js"></script>
+    <script src="js/goo/lib/passpack.js"></script>
+    <script src="js/goo/lib/particlepack.js"></script>
+    <script src="js/goo/lib/animationpack.js"></script>
+    <script src="js/goo/lib/physicspack.js"></script>
+
+
+</head>
+<body>
+<!-- Moaunting div of our React app -->
+<div id="App"></div>
+
+
+
+<!-- Handles the sizing, scrolling and alignment of the canvas. -->
+<script src="js/goo/CanvasWrapper.js"></script>
+
+<!-- Checks if the browser supports WebGL. -->
+<script src="js/goo/WebGLSupport.js"></script>
+
+<!-- Required for the serve.js (gsrv). -->
+<script src="js/goo/GSRVMock.js"></script>
+
+<!-- Oh old browsers! -->
+<!--[if IE 9]><script src="js/goo/shims.js"></script><![endif]-->
+
+<script type="text/javascript" src="bundle.js"></script>
+
+</body>
+</html>

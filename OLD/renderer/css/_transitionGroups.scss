@@ -1,0 +1,89 @@
+
+@import "./globals";
+
+
+
+div.FadeAnimation-enter {
+  opacity: 0;
+  &.FadeAnimation-enter-active{
+    opacity: 1;
+    @include transition(opacity $toggleMenuTransition);
+  }
+}
+
+
+div.FadeAnimation-leave{
+  opacity: 1;
+  &.FadeAnimation-leave-active{
+    opacity: 0;
+    @include transition(opacity $toggleMenuTransition);
+  }
+}
+
+
+
+div.FadeAnimationShort-enter {
+  opacity: 0;
+  &.FadeAnimationShort-enter-active{
+    opacity: 1;
+    @include transition(opacity $toggleMenuTransition/2);
+  }
+}
+
+
+div.FadeAnimationShort-leave{
+  opacity: 1;
+  &.FadeAnimationShort-leave-active{
+    opacity: 0;
+    @include transition(opacity $toggleMenuTransition/2);
+  }
+}
+
+
+
+//from small to full
+div.ScaleFromSmallAnimation-enter {
+  opacity: 0;
+  @include transform(scale(.8));
+  &.ScaleFromSmallAnimation-enter-active{
+    opacity: 1;
+    @include transform(scale(1));
+    @include transition(all $toggleMenuTransition $easing);
+  }
+}
+
+
+div.ScaleFromSmallAnimation-leave{
+  opacity: 1;
+  @include transform(scale(1));
+  &.ScaleFromSmallAnimation-leave-active{
+    opacity: 0;
+    @include transform(scale(.8));
+    @include transition(all $toggleMenuTransition $easing);
+  }
+}
+
+
+
+//from big to full
+
+div.ScaleFromBigAnimation-enter {
+  opacity: 0;
+  @include transform(scale(1.05));
+  &.ScaleFromBigAnimation-enter-active{
+    opacity: 1;
+    @include transform(scale(1));
+    @include transition(all $toggleMenuTransition  $easing);
+  }
+}
+
+
+div.ScaleFromBigAnimation-leave{
+  opacity: 1;
+  @include transform(scale(1));
+  &.ScaleFromBigAnimation-leave-active{
+    opacity: 0;
+    @include transform(scale(1.05));
+    @include transition(all $toggleMenuTransition $easing);
+  }
+}
