@@ -1,11 +1,15 @@
 
 const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
 
 module.exports = {
     entry: './app/main.js',
     output: {
         path: __dirname + '/app',
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        //publicPath: ''
     },
     devtool: 'source-map',
     devServer: {
@@ -26,13 +30,11 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [{
-                    loader: 'style-loader' // creates style nodes from JS strings
-                }, {
-                    loader: 'css-loader' // translates CSS into CommonJS
-                }, {
-                    loader: 'sass-loader' // compiles Sass to CSS
-                }]
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    //resolve-url-loader may be chained before sass-loader if necessary
+                    use: ['css-loader', 'sass-loader']
+                })
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
@@ -43,5 +45,17 @@ module.exports = {
     watch: true,
     resolve: {
         extensions: ['.js', '.jsx']
-    }
+    },
+    plugins: [
+        new ExtractTextPlugin({
+            filename: 'style.css',
+            allChunks: true
+        }),
+        new OptimizeCssAssetsPlugin({
+            //assetNameRegExp: /\.optimize\.css$/g,
+            //cssProcessor: require('cssnano'),
+            cssProcessorOptions: { discardComments: {removeAll: true } },
+            canPrint: true
+        })
+    ]
 };
