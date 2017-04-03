@@ -4,18 +4,18 @@
 
 
 div.FadeAnimation-enter {
-  opacity: 0;
+  opacity: 0.01;
   &.FadeAnimation-enter-active{
-    opacity: 1;
+    opacity: .99;
     @include transition(opacity $toggleMenuTransition);
   }
 }
 
 
 div.FadeAnimation-leave{
-  opacity: 1;
+  opacity: .99;
   &.FadeAnimation-leave-active{
-    opacity: 0;
+    opacity: 0.01;
     @include transition(opacity $toggleMenuTransition);
   }
 }
@@ -24,10 +24,10 @@ div.FadeAnimation-leave{
 
 //from small to full
 div.ScaleFromSmallAnimation-enter {
-  opacity: 0;
+  opacity: 0.01;
   @include transform(scale(.8));
   &.ScaleFromSmallAnimation-enter-active{
-    opacity: 1;
+    opacity: .99;
     @include transform(scale(1));
     @include transition(all $toggleMenuTransition $easing);
   }
@@ -35,10 +35,10 @@ div.ScaleFromSmallAnimation-enter {
 
 
 div.ScaleFromSmallAnimation-leave{
-  opacity: 1;
+  opacity: .99;
   @include transform(scale(1));
   &.ScaleFromSmallAnimation-leave-active{
-    opacity: 0;
+    opacity: 0.01;
     @include transform(scale(.8));
     @include transition(all $toggleMenuTransition $easing);
   }
@@ -49,10 +49,10 @@ div.ScaleFromSmallAnimation-leave{
 //from big to full
 
 div.ScaleFromBigAnimation-enter {
-  opacity: 0;
+  opacity: 0.01;
   @include transform(scale(1.05));
   &.ScaleFromBigAnimation-enter-active{
-    opacity: 1;
+    opacity: .99;
     @include transform(scale(1));
     @include transition(all $toggleMenuTransition  $easing);
   }
@@ -60,11 +60,38 @@ div.ScaleFromBigAnimation-enter {
 
 
 div.ScaleFromBigAnimation-leave{
-  opacity: 1;
+  opacity: .99;
   @include transform(scale(1));
   &.ScaleFromBigAnimation-leave-active{
-    opacity: 0;
+    opacity: 0.01;
     @include transform(scale(1.05));
     @include transition(all $toggleMenuTransition $easing);
   }
 }
+
+
+
+//from bottom
+div.FromBottomAnimation-enter {
+  opacity: 0.01;
+  @include transform(translateY(100px));
+  &.FromBottomAnimation-enter-active{
+    opacity: .99;
+    @include transform(translateY(0));
+    @include transition(all .5s $easing);
+  }
+}
+
+
+div.FromBottomAnimation-leave{
+  opacity: .99;
+  @include transform(translateY(0));
+  &.FromBottomAnimation-leave-active{
+    opacity: 0.01;
+    @include transform(translateY(-100px));
+    @include transition(all .5s $easing);
+  }
+}
+
+
+

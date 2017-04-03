@@ -1,28 +1,6 @@
 @import '../../css/globals';
 
 
-#hero{
-  @include fullAbsBg;
-  position: fixed;
-  overflow: hidden;
-  @include transition(all .5s $easing);
-  &:before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: url(/resources/images/hero.jpg) bottom no-repeat;
-    background-size: cover;
-  }
-
-  &.fold{
-    bottom: 100vh;
-  }
-
-}
-
 
 
 @include keyframes(titleIn){
@@ -37,97 +15,231 @@
 
 
 
-#hero-title{
-  position: fixed;
-  top: 13vh;
-  color: #fff;
-  left: 120px;
-  @include transition(all .5s $easing);
-  @include transform(translateY(-150px));
-
-  h1, h2{
-    span{
-      position: relative;
-      overflow: hidden;
-      display: block;
-      @include listAnimationDelay(70, 4);
-      &:before{
-        @include transform(translateY(100%));
-        content: attr(data-attr);
-        display: block;
-      }
-    }
-  }
-
-  &.ready{
-    h1, h2{
-      span:before{
-        @include animation(titleIn .5s $easing both);
-        @include animation-delay(inherit);
-      }
-    }
-  }
+.Home{
 
 
 
-  h1{
-    opacity: 0;
-    @include transform(translateY(-50px));
-    font-size: 9.5vh;
-    line-height: 1.2;
-    font-weight: 600;
-    margin-bottom: 5px;
-    @include transition(all .5s $easing);
-  }
-  h2{
-    font-size: 4.8vh;
-    font-weight: 300;
-    margin-bottom: 40px;
-  }
-
-  > svg{
-    display: block;
-    stroke-dasharray: 180;
-    stroke-dashoffset: 181;
-    @include transition(stroke-dashoffset .5s $easing);
-  }
-
-  .Button{
+  .section-title{
     position: absolute;
-    @include transition(all .7s .3s $easing);
-    @include transform(translateY(0));
+    color: #fff;
+    height: 100%;
+    top: 0;
+
+    section{
+      position: relative;
+      @include vertical-middle;
+    }
+
+    h2{
+      font-size: 8vh;
+      line-height: 1.2;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    h3{
+      font-size: 3.6vh;
+      font-weight: 400;
+    }
+    p{
+      width: 420px;
+      margin-top: 20px;
+      font-size: 1.9rem;
+    }
+
+    &.l{
+      left: 12%;
+    }
+    &.r{
+      right: 12%;
+    }
   }
 
-}
+
+  .Home-title{
+    position: absolute;
+    top: 13vh;
+    color: #fff;
+    left: 12%;
+    @include transition(all .5s $easing);
+    @include transform(translateY(-150px));
+
+    h1, h2{
+      span{
+        position: relative;
+        overflow: hidden;
+        display: block;
+        @include listAnimationDelay(70, 4);
+        &:before{
+          @include transform(translateY(100%));
+          content: attr(data-attr);
+          display: block;
+        }
+      }
+    }
 
 
-
-
-.slide-0{
-  #hero-title{
-    @include transform(translateY(0));
     h1{
-      opacity: 1;
+      opacity: 0;
+      @include transform(translateY(-50px));
+      font-size: 9.5vh;
+      line-height: 1.2;
+      font-weight: 600;
+      margin-bottom: 5px;
+      @include transition(all .5s $easing);
+    }
+    h2{
+      font-size: 4.8vh;
+      font-weight: 400;
+      margin-bottom: 40px;
+      font-family: $font-body;
+    }
+
+    > svg{
+      cursor: pointer;
+      display: block;
+      stroke-dasharray: 180;
+      stroke-dashoffset: 181;
+      @include transition(stroke-dashoffset .5s $easing);
+    }
+
+    .Button{
+      pointer-events: all;
+      position: absolute;
+      @include transition(all .7s .3s $easing);
       @include transform(translateY(0));
     }
-    > svg{
+
+  }
+
+
+
+
+  &.ready{
+
+    .slide-0 .Home-title > svg{
       stroke-dashoffset: 0;
       @include transition(stroke-dashoffset .5s .3s $easing);
     }
 
+    .Home-title{
+      h1, h2{
+        span:before{
+          @include animation(titleIn .5s $easing both);
+          @include animation-delay(inherit);
+        }
+      }
+    }
+
+  }
 
 
-    .Button{
-      opacity: 0;
-      @include transition(all .3s $easing);
-      @include transform(translateY(50px));
+
+
+  .slide-0{
+    .Home-title{
+      @include transform(translateY(0));
+      h1{
+        opacity: 1;
+        @include transform(translateY(0));
+      }
+
+
+
+
+      .Button{
+        pointer-events: none;
+        opacity: 0;
+        @include transition(all .3s $easing);
+        @include transform(translateY(50px));
+      }
     }
   }
+
+
+
+
+  #hero{
+    @include fullAbsBg;
+    position: fixed;
+    overflow: hidden;
+    @include transition(all .5s $easing);
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: url(/resources/images/hero.jpg) bottom no-repeat $grey-dark;
+      background-size: cover;
+    }
+
+    &.fold{
+      bottom: 100vh;
+    }
+
+  }
+
+
+
+
+
+
+
+  .bullets{
+    position: absolute;
+    right: 30px;
+    @include vertical-middle;
+    li{
+      position: relative;
+      padding: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      @include animation(softFromBottom .5s $easing both);
+      @include listAnimationDelay(200, 5);
+      &:before{
+        content: '';
+        display: block;
+        @include round;
+        background-color: #fff;
+        width: 8px;
+        height: 8px;
+        @include transition(all .3s $easing);
+        box-shadow:  0 0 0 0 #fff;
+      }
+
+      svg{
+        position: absolute;
+        @include transform-origin(11px 11px);
+        @include transform(translate(-50%,-50%) rotate(260deg));
+        top: 50%;
+        left: 50%;
+        stroke-dasharray: 70;
+        opacity: 0;
+        @include transition(all .5s $easing);
+      }
+
+      &.active svg{
+        opacity: 1;
+      }
+
+      &:hover, &.active{
+        &:before{
+          background-color: transparent;
+          box-shadow:  0 0 0 2px #fff;
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
 }
-
-
-
-
-
 
 

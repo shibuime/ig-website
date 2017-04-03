@@ -28,50 +28,84 @@
 //loading
 
 #loading-screen {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  @include vertical-gradient($green, $blue);
-  overflow: hidden;
+  @include center-transform;
+  text-align: center;
+  width: 220px;
+  height: 220px;
   pointer-events: none;
   z-index: 9999;
-  @include transition(all .5s $easing);
+  color: #fff;
+
+  &:before{
+    content: '';
+    @include fullAbsBg;
+    @include horizontal-gradient($green, $blue);
+    opacity: .5;
+    @include transform-origin(top);
+    @include transition(all .8s $easing);
+    @include transform(scale(1,0));
+  }
   &.visible {
-    opacity: 1;
+    &:before{
+      @include transform(scale(1,1));
+    }
+    #progress{
+      @include transform(scale(1,0));
+      bottom: 0;
+    }
+    i {
+      opacity: 1;
+      @include transform(translate(-50%, 50%));
+    }
+     h5{
+      opacity: 1;
+      @include transform(translateY(0));
+    }
   }
   &.hidden {
     display: none;
   }
 
   i{
-    @include center-transform;
-    font-size: 52px;
-    font-weight: 300;
-    color: #fff;
-    @include transition(all .2s $easing);
+    @include transition(all .3s $easing);
+    position: absolute;
+    left: 50%;
+    opacity: 0;
+    bottom: 100%;
+    @include transform(translate(-50%, -10px));
+    font-size: 32px;
+    font-weight: bold;
     span{
       font-size: 50%;
       display: inline-block;
     }
   }
-}
 
+  h5{
+    @include transition(all .3s $easing);
+    opacity: 0;
+    @include transform(translateY(-10px));
+    position: absolute;
+    font-weight:400;
+    font-size: 1.4rem;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+  }
+}
 
 
 #progress {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: -100%;
-  background-color: $white-light-mid;
-  @include transition(all .2s $easing);
+  opacity: .7;
+  @include fullAbsBg;
+  bottom: 100%;
+  @include transform(scale(1,1));
+  @include transform-origin(bottom);
+  @include horizontal-gradient($blue, $green);
+  @include transition(all .5s $easing);
 }
+
+
 
 
 

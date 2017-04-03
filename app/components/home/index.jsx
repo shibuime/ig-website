@@ -1,17 +1,21 @@
 
 import React, {Component, PropTypes} from 'react';
 import {observable} from "mobx";
+import {Link} from 'react-router';
 import {observer} from "mobx-react";
 import ClassNames from "classnames";
 import autobind from "autobind-decorator";
 import WheelIndicator from "wheel-indicator";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 import './_style.scss';
 
 
-const lastSlide = 4;
-var gooRunner = null;
+const lastSlide = 7;
+const lastCameraPos = 4;
+
+let gooRunner = null;
 
 
 @observer
@@ -87,7 +91,7 @@ export default class Home extends Component {
                     }).then(function () {
                         show('canvas-screen');
                         hide('loading-screen');
-                        document.getElementById('hero-title').classList.add('ready')
+                        document.querySelector('.Home').classList.add('ready');
                         CanvasWrapper.show();
                         CanvasWrapper.resize();
 
@@ -219,7 +223,7 @@ export default class Home extends Component {
                  */
                 function onLoadProgress(handled, total) {
                     var loadedPercent = (100 * handled / total).toFixed();
-                    document.getElementById('progress').style.transform = ' translateX('+loadedPercent + '%)';
+                    document.querySelector('#progress').style.transform = 'scale(1, '+ (loadedPercent * .01) +')';
                     document.querySelector('#loading-screen i').innerHTML = loadedPercent + '<span>%</span>';
 
                     window.postMessage({handled: handled, total: total, loadedPercent: loadedPercent}, '*')
@@ -282,7 +286,7 @@ export default class Home extends Component {
                     classList.remove('visible');
                     window.setTimeout(function () {
                         classList.add('hidden');
-                    }, 500);
+                    }, 1000);
                 }
 
                 //--------------------------------------------------------------------------
@@ -312,14 +316,14 @@ export default class Home extends Component {
         this.state.slideNum = num;
 
 
-        if(num > 0 && num < lastSlide){
+        if(num > 0 && num < lastCameraPos){
             goo.SystemBus.emit('showNumbers')
         }
         else{
             goo.SystemBus.emit('hideNumbers')
         }
 
-        if(num === 0 || num > lastSlide) return;
+        if(num === 0 || num > lastCameraPos) return;
         goo.SystemBus.emit('setCameraPosition'+(num-1));
 
 
@@ -367,6 +371,9 @@ export default class Home extends Component {
                     <div id="loading-screen" className="visible">
                         <div id="progress"/>
                         <i/>
+                        <h5>
+                            Loading experience data...
+                        </h5>
                     </div>
 
 
@@ -382,38 +389,123 @@ export default class Home extends Component {
 
 
 
+                    <ReactCSSTransitionGroup
+                        transitionName="FadeAnimation"
+                        transitionLeaveTimeout={500}>
+                        {(slideNum >= 0 && slideNum < 4) &&
+                            <div className="Home-title">
+                                <h1>
+                                    <span data-attr="Intelligo"/>
+                                    <span data-attr="Group"/>
+                                </h1>
+                                <h2>
+                                    <span data-attr="Innovative"/>
+                                    <span data-attr="intelligence,"/>
+                                    <span data-attr="iactionable"/>
+                                    <span data-attr="insights"/>
+                                </h2>
 
-                    <div id="hero-title">
-                        <h1>
-                            <span data-attr="Intelligo"/>
-                            <span data-attr="Group"/>
-                        </h1>
-                        <h2>
-                            <span data-attr="Innovative"/>
-                            <span data-attr="intelligence,"/>
-                            <span data-attr="iactionable"/>
-                            <span data-attr="insights"/>
-                        </h2>
-
-                        <div className="Button scroll">
-                            <span className="label">Our Technology</span>
+                                <div className="Button scroll" onClick={()=> this.goToScreen(4)}>
+                                    <span className="label">Our Technology</span>
 
 
 
-                            <svg width="40px" height="40px" viewBox="211 14 40 40">
-                                <circle  stroke="#FFFFFF" strokeWidth="1" fill="none" cx="231" cy="34" r="13"/>
-                                <g>
-                                    <path d="M224.733438,37.8612881 L237.561483,37.8612881" id="Path-13" stroke="#FFFFFF" strokeWidth="1" fill="none" transform="translate(231.147461, 37.861288) rotate(-270.000000) translate(-231.147461, -37.861288) "/>
-                                    <polyline id="Path-14" stroke="#FFFFFF" strokeWidth="1" fill="none" transform="translate(231.105673, 42.246975) rotate(-270.000000) translate(-231.105673, -42.246975) " points="229.008425 37.823351 233.355673 42.1705988 228.855673 46.6705988"/>
-                                </g>
-                            </svg>
+                                    <svg width="40px" height="40px" viewBox="211 14 40 40">
+                                        <circle  stroke="#FFFFFF" strokeWidth="1" fill="none" cx="231" cy="34" r="13"/>
+                                        <g>
+                                            <path d="M224.733438,37.8612881 L237.561483,37.8612881" id="Path-13" stroke="#FFFFFF" strokeWidth="1" fill="none" transform="translate(231.147461, 37.861288) rotate(-270.000000) translate(-231.147461, -37.861288) "/>
+                                            <polyline id="Path-14" stroke="#FFFFFF" strokeWidth="1" fill="none" transform="translate(231.105673, 42.246975) rotate(-270.000000) translate(-231.105673, -42.246975) " points="229.008425 37.823351 233.355673 42.1705988 228.855673 46.6705988"/>
+                                        </g>
+                                    </svg>
+                                </div>
+
+
+                                <svg width="26px" height="151px" viewBox="124 636 26 151" onClick={()=> this.goToScreen(1)}>
+                                    <polyline id="Path-2" stroke="#FFFFFF" strokeWidth="6" fill="none" points="128 640 128 777.990948 146.064685 759.926262"/>
+                                </svg>
+                            </div>
+                        }
+                    </ReactCSSTransitionGroup>
+
+
+
+                    <ReactCSSTransitionGroup
+                        transitionName="FromBottomAnimation"
+                        transitionLeaveTimeout={500}>
+
+                        {(slideNum >= 4 && slideNum < 7) &&
+                        <div className="section-title l">
+                            <section>
+                                <h2>
+                                    Intelligo Clarity
+                                </h2>
+                                <h3>
+                                    Technology that monitors human risk
+                                </h3>
+                                <p>
+                                    The first truly automated due diligence solution, producing a breathtakingly comprehensive report in minutes.
+                                </p>
+
+                                <Link className="Button white" to="/about">
+                                    <span className="label">More about Clarity</span>
+                                    <svg width="50px" height="45px" viewBox="2 5 50 45">
+                                        <path d="M30,42.2132034 C38.2842712,42.2132034 45,35.4974747 45,27.2132034 C45,18.9289322 38.2842712,12.2132034 30,12.2132034 C21.7157288,12.2132034 15,18.9289322 15,27.2132034" stroke="#FFFFFF" strokeWidth="1" fill="none" transform="translate(30.000000, 27.213203) rotate(-315.000000) translate(-30.000000, -27.213203) "/>
+                                        <path d="M3.44726562,27.0657425 L33.2753106,27.0657425" id="Path-13" stroke="#FFFFFF" stroke-width="1" fill="none"/>
+                                        <polyline  stroke="#FFFFFF" strokeWidth="1" fill="none" points="28.1497271 21.6839066 33.4969749 27.0311544 27.9969749 32.5311544"/>
+                                    </svg>
+                                </Link>
+                            </section>
                         </div>
+                        }
+
+                    </ReactCSSTransitionGroup>
 
 
-                        <svg width="26px" height="151px" viewBox="124 636 26 151">
-                            <polyline id="Path-2" stroke="#FFFFFF" strokeWidth="6" fill="none" points="128 640 128 777.990948 146.064685 759.926262"/>
-                        </svg>
-                    </div>
+
+                    <ReactCSSTransitionGroup
+                        transitionName="FromBottomAnimation"
+                        transitionLeaveTimeout={500}>
+                        {(slideNum === lastSlide) &&
+                        <div className="section-title r">
+                            <section>
+                                <h2>
+                                    Services
+                                </h2>
+                                <p>
+                                    Utilizing the experience of Israeli intelligence coupled with innovative technology, enables us to deliver comprehensive background checks and profiling to our clients around the world.
+                                </p>
+                            </section>
+                        </div>
+                        }
+                    </ReactCSSTransitionGroup>
+
+
+
+
+
+                    <ul className="bullets">
+
+                        <li className={(slideNum >= 0 && slideNum < 4) ? "active" : ""} onClick={()=> this.goToScreen(0)}>
+                            <svg width="22px" height="22px" viewBox="0 0 22 22" style={{strokeDashoffset: 71 - slideNum*23}}>
+                                <circle stroke="#1DE7DE" strokeWidth="2" fill="none" cx="11" cy="11" r="10"/>
+                            </svg>
+                        </li>
+
+                        <li className={(slideNum >= 4 && slideNum < 7) ? "active" : ""} onClick={()=> this.goToScreen(4)}>
+                            <svg width="22px" height="22px" viewBox="0 0 22 22" style={{strokeDashoffset: 71 - (slideNum-3)*23}}>
+                                <circle stroke="#1DE7DE" strokeWidth="2" fill="none" cx="11" cy="11" r="10"/>
+                            </svg>
+                        </li>
+
+                        <li className={slideNum === lastSlide ? "active" : ""} onClick={()=> this.goToScreen(lastSlide)}>
+                            <svg width="22px" height="22px" viewBox="0 0 22 22" style={{strokeDashoffset: 0}}>
+                                <circle stroke="#1DE7DE" strokeWidth="2" fill="none" cx="11" cy="11" r="10"/>
+                            </svg>
+                        </li>
+
+                    </ul>
+
+
 
 
 
@@ -421,8 +513,6 @@ export default class Home extends Component {
                     <div id="fallback">
                         <h1>WebGL not supported or not enabled</h1>
                     </div>
-
-
 
                 </div>
 
