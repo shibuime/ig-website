@@ -486,13 +486,13 @@ export default class Home extends Component {
                     <ul className="bullets">
 
                         <li className={(slideNum >= 0 && slideNum < 4) ? "active" : ""} onClick={()=> this.goToScreen(0)}>
-                            <svg width="22px" height="22px" viewBox="0 0 22 22" style={{strokeDashoffset: 71 - slideNum*23}}>
+                            <svg width="22px" height="22px" viewBox="0 0 22 22" style={{strokeDashoffset: Math.max(71 - slideNum*23, 0)}}>
                                 <circle stroke="#1DE7DE" strokeWidth="2" fill="none" cx="11" cy="11" r="10"/>
                             </svg>
                         </li>
 
                         <li className={(slideNum >= 4 && slideNum < 7) ? "active" : ""} onClick={()=> this.goToScreen(4)}>
-                            <svg width="22px" height="22px" viewBox="0 0 22 22" style={{strokeDashoffset: 71 - (slideNum-3)*23}}>
+                            <svg width="22px" height="22px" viewBox="0 0 22 22" style={{strokeDashoffset: Math.min(71, Math.max(71 - (slideNum-3)*23, 0))}}>
                                 <circle stroke="#1DE7DE" strokeWidth="2" fill="none" cx="11" cy="11" r="10"/>
                             </svg>
                         </li>
