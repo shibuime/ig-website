@@ -170,7 +170,7 @@ input, textarea, button, select{
   }
 }
 
-@include keyframes(cardIn){
+@include keyframes(bottomIn){
   from{
     opacity: 0.01;
     @include transform(translateY(20px));
@@ -247,6 +247,14 @@ input, textarea, button, select{
 }
 
 
+@include keyframes(scaleRight){
+  from{
+    @include transform(scale(0,1))
+  }
+  to{
+    @include transform(scale(1,1))
+  }
+}
 
 @include keyframes(scaleOut){
   from{
@@ -269,89 +277,29 @@ input, textarea, button, select{
 }
 
 
-.Button{
-  cursor: pointer;
-  position: relative;
-  white-space: nowrap;
-  color: #fff;
-  font-size: 2rem;
-  font-weight: 300;
-  padding: 12px 15px 11px 30px;
-  display: inline-block;
-  vertical-align: top;
 
-  &:before, &:after{
-    content: '';
-    @include border-radius(50px);
-    @include fullAbsBg;
-    z-index: -1;
-    @include transition(opacity .3s $easing);
+@include keyframes(titleIn){
+  from{
+    @include transform(translateY(100%));
+
   }
-  &:before{
-    @include horizontal-gradient($blue, $green);
-    opacity: .8;
+  to{
+    @include transform(translateY(0));
   }
-  &:after{
-    @include horizontal-gradient($green, $blue);
-    opacity: 0;
-    box-shadow:  0 0 0 4px rgba(18, 168, 192, 0.6);
-    @include border-radius(50px);
-  }
-
-  .label, svg{
-    @include inline-block-mid;
-  }
-  svg{
-    margin-left: 15px;
-  }
-
-  &.scroll svg{
-    circle{
-      stroke-dasharray: 81;
-      stroke-dashoffset: 23;
-      @include transform-origin(50% 50%);
-      @include transform(rotate(140deg));
-      @include transition(all .25s $easing);
-    }
-    g{
-      @include transition(all .25s $easing);
-    }
-  }
-
-  &:hover{
-    &:before{
-      opacity: 0;
-    }
-    &:after{
-      opacity: 1;
-    }
-
-    &.scroll svg{
-      circle{
-        stroke-dashoffset: 55;
-        @include transform(rotate(30deg));
-      }
-      g{
-        @include transform(translateY(-5px));
-      }
-    }
-  }
-
-
-  &.white{
-    border: 1px solid;
-    margin-top: 50px;
-    @include border-radius(50px);
-    &:before, &:after{
-      display: none;
-    }
-    .label{
-      margin-right: 15px;
-    }
-  }
-
-
-
-
 }
 
+
+.enterAnim{
+
+  .title-line{
+    position: relative;
+    overflow: hidden;
+    display: block;
+    span{
+      @include transform(translateY(100%));
+      display: block;
+      @include animation(titleIn .7s $easing both);
+    }
+  }
+
+}

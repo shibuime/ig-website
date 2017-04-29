@@ -4,6 +4,9 @@ import {observable} from "mobx";
 import {Link} from 'react-router';
 import {observer} from "mobx-react";
 import ClassNames from "classnames";
+import Icon from "../../components/icon/icon";
+import BGImg from "../../components/bg-img/bg-img";
+import Button from "../../components/button/button";
 import autobind from "autobind-decorator";
 import WheelIndicator from "wheel-indicator";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -12,7 +15,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './_style.scss';
 
 
-const lastSlide = 7;
+const lastSlide = 8;
 const lastCameraPos = 4;
 
 let gooRunner = null;
@@ -223,8 +226,7 @@ export default class Home extends Component {
                  */
                 function onLoadProgress(handled, total) {
                     var loadedPercent = (100 * handled / total).toFixed();
-                    document.querySelector('#progress').style.transform = 'scale(1, '+ (loadedPercent * .01) +')';
-                    document.querySelector('#loading-screen i').innerHTML = loadedPercent + '<span>%</span>';
+                    document.getElementById('progress').innerHTML = loadedPercent + '<span>%</span>';
 
                     window.postMessage({handled: handled, total: total, loadedPercent: loadedPercent}, '*')
                 }
@@ -286,7 +288,7 @@ export default class Home extends Component {
                     classList.remove('visible');
                     window.setTimeout(function () {
                         classList.add('hidden');
-                    }, 1000);
+                    }, 700);
                 }
 
                 //--------------------------------------------------------------------------
@@ -297,10 +299,13 @@ export default class Home extends Component {
 
 
             this.initWheel();
+            document.addEventListener('keydown', this.arrowNavHandler)
 
     }
 
     componentWillUnmount(){
+        document.removeEventListener('keydown', this.arrowNavHandler);
+
         if(!gooRunner) return;
 
         console.log('clear goo');
@@ -310,6 +315,18 @@ export default class Home extends Component {
     }
 
 
+    @autobind
+    arrowNavHandler(e){
+        e = e || window.event;
+        //console.log(e.keyCode);
+
+        if (e.keyCode == '38') {
+            this.wheelHandler('up')
+        }
+        else if (e.keyCode == '40') {
+            this.wheelHandler('down')
+        }
+    }
 
     @autobind
     goToScreen(num){
@@ -368,92 +385,121 @@ export default class Home extends Component {
                 <div id="wrapper" className={'slide-'+slideNum}>
 
 
+                    {/* ----- LOADING ----- */}
                     <div id="loading-screen" className="visible">
-                        <div id="progress"/>
-                        <i/>
-                        <h5>
-                            Loading experience data...
-                        </h5>
+                        <BGImg className="loader" src="/resources/images/loader.svg"/>
+
+                        <div id="cube">
+                            <div className="front"/>
+                            <div className="back"/>
+                            <div className="right"/>
+                            <div className="left"/>
+                            <div className="top"/>
+                            <div className="bottom"/>
+                        </div>
+                        <div id="progress">
+                            5<span>%</span>
+                        </div>
                     </div>
-
-
                     <div id="canvas-screen">
                         <div id="canvas-outer">
                             <div id="canvas-inner"/>
                         </div>
                     </div>
+                    {/* ----- LOADING ENDS ----- */}
 
 
 
-                    <div id="hero" className={slideNum > 0 ? 'fold' : ''}/>
+
+
+
+                    {/* ----- HERO ----- */}
+                    <div id="hero" className={slideNum > 0 ? 'fold' : ''}>
+                        <BGImg src="/resources/images/hero.jpg"/>
+                    </div>
+
+                    <ReactCSSTransitionGroup
+                        transitionName="FadeAnimation"
+                        transitionLeaveTimeout={500}>
+                        {(slideNum >= 0 && slideNum < 4) &&
+                            <div className="Home-title enterAnim">
+                                <h1>
+                                    <div className="title-line">
+                                        <span>Intelligo</span>
+                                    </div>
+                                    <div className="title-line">
+                                        <span>Group</span>
+                                    </div>
+                                </h1>
+                                <h2>
+                                    <div className="title-line">
+                                        <span>Innovative</span>
+                                    </div>
+                                    <div className="title-line">
+                                        <span>intelligence,</span>
+                                    </div>
+                                    <div className="title-line">
+                                        <span>iactionable</span>
+                                    </div>
+                                    <div className="title-line">
+                                        <span>insights</span>
+                                    </div>
+                                </h2>
+
+
+                                <ReactCSSTransitionGroup
+                                    transitionName="FadeAnimation"
+                                    transitionLeaveTimeout={300}>
+                                    {slideNum > 0 &&
+                                    <Button white className="scroll" onClick={()=> this.goToScreen(4)}>
+                                        <span className="label">Our Technology</span>
+                                        <Icon type="arrow-down"/>
+                                    </Button>
+                                    }
+                                </ReactCSSTransitionGroup>
+
+                            </div>
+                        }
+                    </ReactCSSTransitionGroup>
+                    {/* ----- HERO ENDS ----- */}
+
+
+
 
 
 
                     <ReactCSSTransitionGroup
                         transitionName="FadeAnimation"
                         transitionLeaveTimeout={500}>
-                        {(slideNum >= 0 && slideNum < 4) &&
-                            <div className="Home-title">
-                                <h1>
-                                    <span data-attr="Intelligo"/>
-                                    <span data-attr="Group"/>
-                                </h1>
-                                <h2>
-                                    <span data-attr="Innovative"/>
-                                    <span data-attr="intelligence,"/>
-                                    <span data-attr="iactionable"/>
-                                    <span data-attr="insights"/>
-                                </h2>
-
-                                <div className="Button scroll" onClick={()=> this.goToScreen(4)}>
-                                    <span className="label">Our Technology</span>
-
-
-
-                                    <svg width="40px" height="40px" viewBox="211 14 40 40">
-                                        <circle  stroke="#FFFFFF" strokeWidth="1" fill="none" cx="231" cy="34" r="13"/>
-                                        <g>
-                                            <path d="M224.733438,37.8612881 L237.561483,37.8612881" id="Path-13" stroke="#FFFFFF" strokeWidth="1" fill="none" transform="translate(231.147461, 37.861288) rotate(-270.000000) translate(-231.147461, -37.861288) "/>
-                                            <polyline id="Path-14" stroke="#FFFFFF" strokeWidth="1" fill="none" transform="translate(231.105673, 42.246975) rotate(-270.000000) translate(-231.105673, -42.246975) " points="229.008425 37.823351 233.355673 42.1705988 228.855673 46.6705988"/>
-                                        </g>
-                                    </svg>
-                                </div>
-
-
-                                <svg width="26px" height="151px" viewBox="124 636 26 151" onClick={()=> this.goToScreen(1)}>
-                                    <polyline id="Path-2" stroke="#FFFFFF" strokeWidth="6" fill="none" points="128 640 128 777.990948 146.064685 759.926262"/>
-                                </svg>
-                            </div>
-                        }
-                    </ReactCSSTransitionGroup>
-
-
-
-                    <ReactCSSTransitionGroup
-                        transitionName="FromBottomAnimation"
-                        transitionLeaveTimeout={500}>
 
                         {(slideNum >= 4 && slideNum < 7) &&
                         <div className="section-title l">
-                            <section>
+                            <section className="enterAnim">
                                 <h2>
-                                    Intelligo Clarity
+                                    <div className="title-line">
+                                        <span>Intelligo Clarity</span>
+                                    </div>
                                 </h2>
                                 <h3>
-                                    Technology that monitors human risk
+                                    <div className="title-line">
+                                        <span>Technology that monitors human risk</span>
+                                    </div>
                                 </h3>
                                 <p>
-                                    The first truly automated due diligence solution, producing a breathtakingly comprehensive report in minutes.
+                                    <div className="title-line">
+                                        <span>Clarity enables effort-free compliance by </span>
+                                    </div>
+                                    <div className="title-line">
+                                        <span>automating research on people and companies</span>
+                                    </div>
                                 </p>
 
-                                <Link className="Button white" to="/about">
-                                    <span className="label">More about Clarity</span>
-                                    <svg width="50px" height="45px" viewBox="2 5 50 45">
-                                        <path d="M30,42.2132034 C38.2842712,42.2132034 45,35.4974747 45,27.2132034 C45,18.9289322 38.2842712,12.2132034 30,12.2132034 C21.7157288,12.2132034 15,18.9289322 15,27.2132034" stroke="#FFFFFF" strokeWidth="1" fill="none" transform="translate(30.000000, 27.213203) rotate(-315.000000) translate(-30.000000, -27.213203) "/>
-                                        <path d="M3.44726562,27.0657425 L33.2753106,27.0657425" id="Path-13" stroke="#FFFFFF" stroke-width="1" fill="none"/>
-                                        <polyline  stroke="#FFFFFF" strokeWidth="1" fill="none" points="28.1497271 21.6839066 33.4969749 27.0311544 27.9969749 32.5311544"/>
-                                    </svg>
-                                </Link>
+
+                                <Button primary  to="/request-a-demo">
+                                    <span className="label">Request a demo</span>
+                                    <Icon type="arrow-right"/>
+                                </Button>
+
                             </section>
                         </div>
                         }
@@ -463,17 +509,28 @@ export default class Home extends Component {
 
 
                     <ReactCSSTransitionGroup
-                        transitionName="FromBottomAnimation"
+                        transitionName="FadeAnimation"
                         transitionLeaveTimeout={500}>
-                        {(slideNum === lastSlide) &&
+                        {(slideNum === 7) &&
                         <div className="section-title r">
-                            <section>
+                            <section className="enterAnim">
                                 <h2>
-                                    Services
+                                    <div className="title-line">
+                                        <span>Our Mission</span>
+                                    </div>
                                 </h2>
                                 <p>
-                                    Utilizing the experience of Israeli intelligence coupled with innovative technology, enables us to deliver comprehensive background checks and profiling to our clients around the world.
+                                    <div className="title-line">
+                                        <span>The first truly automated due diligence solution,</span>
+                                    </div>
+                                    <div className="title-line">
+                                        <span>producing a comprehensive report in minutes.</span>
+                                    </div>
                                 </p>
+                                <Button primary  to="/request-a-demo">
+                                    <span className="label">Request a demo</span>
+                                    <Icon type="arrow-right"/>
+                                </Button>
                             </section>
                         </div>
                         }
@@ -497,7 +554,13 @@ export default class Home extends Component {
                             </svg>
                         </li>
 
-                        <li className={slideNum === lastSlide ? "active" : ""} onClick={()=> this.goToScreen(lastSlide)}>
+                        <li className={slideNum === 7 ? "active" : ""} onClick={()=> this.goToScreen(7)}>
+                            <svg width="22px" height="22px" viewBox="0 0 22 22" style={{strokeDashoffset: 0}}>
+                                <circle stroke="#1DE7DE" strokeWidth="2" fill="none" cx="11" cy="11" r="10"/>
+                            </svg>
+                        </li>
+
+                        <li className={slideNum === lastSlide ? "active" : ""} onClick={()=> this.goToScreen(8)}>
                             <svg width="22px" height="22px" viewBox="0 0 22 22" style={{strokeDashoffset: 0}}>
                                 <circle stroke="#1DE7DE" strokeWidth="2" fill="none" cx="11" cy="11" r="10"/>
                             </svg>

@@ -3,6 +3,8 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
 import ClassNames from "classnames";
+import Icon from "../../components/icon/icon";
+import Button from "../../components/button/button";
 
 
 import './_style.scss';
@@ -26,22 +28,20 @@ export default class MainMenu extends Component {
 
                 <ul id="links">
                     <li>
-                        <Link to="/services">Services</Link>
+                        <Link to="/about">About Us</Link>
                     </li>
                     <li>
-                        <Link to="/product">Product</Link>
+                        <Link to="/contact-us">Contact Us</Link>
                     </li>
                     <li>
-                        <Link to="/case-studies">Case Studies</Link>
+                        <Button white small to="/login">
+                            <span className="label">Login</span>
+                        </Button>
                     </li>
                     <li>
-                        <Link to="/about">Company</Link>
-                    </li>
-                    <li>
-                        <Link to="/contact-us">Contact</Link>
-                    </li>
-                    <li>
-                        <Link target="_blank" className="login" to="/login">Login</Link>
+                        <Button primary small to="/request-a-demo">
+                            <span className="label">Request a demo</span>
+                        </Button>
                     </li>
                 </ul>
             </nav>

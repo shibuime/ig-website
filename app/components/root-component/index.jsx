@@ -8,6 +8,7 @@ import MainMenu from '../menu';
 
 export default class RootComponent extends Component {
 
+
     render() {
         let {className, children} = this.props;
 

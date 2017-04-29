@@ -28,82 +28,91 @@
 //loading
 
 #loading-screen {
-  @include center-transform;
   text-align: center;
-  width: 220px;
-  height: 220px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  height: 140px;
   pointer-events: none;
   z-index: 9999;
   color: #fff;
+  @include transition(all .7s $easing);
+  @include transform(translate(-50%, -50%) scale(.5));
+  opacity: 0;
 
-  &:before{
-    content: '';
+  .loader{
     @include fullAbsBg;
-    @include horizontal-gradient($green, $blue);
-    opacity: .5;
-    @include transform-origin(top);
-    @include transition(all .8s $easing);
-    @include transform(scale(1,0));
+    @include animation(spin 1s infinite $easing);
   }
+
   &.visible {
-    &:before{
-      @include transform(scale(1,1));
-    }
-    #progress{
-      @include transform(scale(1,0));
-      bottom: 0;
-    }
-    i {
+    @include transform(translate(-50%, -50%) scale(1));
       opacity: 1;
-      @include transform(translate(-50%, 50%));
-    }
-     h5{
-      opacity: 1;
-      @include transform(translateY(0));
-    }
   }
   &.hidden {
     display: none;
   }
-
-  i{
-    @include transition(all .3s $easing);
-    position: absolute;
-    left: 50%;
-    opacity: 0;
-    bottom: 100%;
-    @include transform(translate(-50%, -10px));
-    font-size: 32px;
-    font-weight: bold;
-    span{
-      font-size: 50%;
-      display: inline-block;
-    }
-  }
-
-  h5{
-    @include transition(all .3s $easing);
-    opacity: 0;
-    @include transform(translateY(-10px));
-    position: absolute;
-    font-weight:400;
-    font-size: 1.4rem;
-    left: 0;
-    right: 0;
-    bottom: 20px;
-  }
 }
+
 
 
 #progress {
-  opacity: .7;
-  @include fullAbsBg;
-  bottom: 100%;
-  @include transform(scale(1,1));
-  @include transform-origin(bottom);
-  @include horizontal-gradient($blue, $green);
-  @include transition(all .5s $easing);
+  @include center-transform;
+  @include perspective(1000px);
+  text-align: center;
+  font-family: $font-title;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  mix-blend-mode: multiply;
+  span{
+    font-size: 50%;
+    display: inline-block;
+  }
 }
+
+#cube{
+  transform-style: preserve-3d;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -30px;
+  margin-left: -30px;
+  @include animation(spinCube 2s infinite $easing);
+
+  div{
+    //box-shadow: inset 0 0 0 1px rgba(255,255,255,1);
+    opacity: .5;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    @include horizontal-gradient($green, $blue);
+    &.front  {  @include transform ( rotateY(   0deg ) translateZ( 30px )); }
+    &.back   {  @include transform ( rotateX( 180deg ) translateZ( 30px )); }
+    &.right  {  @include transform ( rotateY(  90deg ) translateZ( 30px )); }
+    &.left   {  @include transform ( rotateY( -90deg ) translateZ( 30px )); }
+    &.top    {  @include transform ( rotateX(  90deg ) translateZ( 30px )); }
+    &.bottom {  @include transform ( rotateX( -90deg ) translateZ( 30px )); }
+  }
+}
+
+
+
+@include keyframes(spinCube){
+  from {
+    @include transform ( rotateX(0deg) rotateY(0deg));
+  }
+  to{
+    @include transform ( rotateX(360deg) rotateY(360deg));
+  }
+}
+
 
 
 
@@ -111,52 +120,76 @@
 
 
 //numbers
-.number.active {
-  transform: translateY(0);
-  opacity: .6;
-  transition: all .3s .5s;
-}
 
 .number {
   text-align: left;
   min-width: 75px;
-  font-family: 'Raleway', sans-serif;
+  font-family: $font-title;
   position: relative;
   white-space: nowrap;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 13px;
   opacity: 0;
   transition: all .2s;
   transform: translateY(-5px);
   font-weight: 300;
+  svg{
+    opacity: .6;
+  }
+  svg, .number-elm{
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .number-elm {
+    padding: 0;
+    margin: -8px 0 0 5px;
+  }
+
+  .note{
+    font-weight: 300;
+    color: #fff;
+    margin-bottom: 20px;
+    i, span{
+      @include inline-block-mid;
+    }
+
+    i{
+      color: #fff;
+      font-size: 3rem;
+      margin-right: 5px;
+      @include round;
+      padding: 3px;
+    }
+
+
+    &.mid i{
+      background-color: $grey-dark;
+    }
+    &.risk i{
+      background-color: #8223FF;
+    }
+    &.warning i{
+      background-color: #E44B72;
+    }
+    &.approved i{
+      background-color: #2BB674;
+    }
+
+  }
+
+
+
+  &.active {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all .3s .5s;
+  }
+
 }
 
-.number svg, .number-elm{
-  display: inline-block;
-  vertical-align: top;
-}
-
-.number-elm {
-  padding: 0;
-  margin: -8px 0 0 5px;
-}
-
-.note{
-  font-weight: 300;
-  color: #fff;
-  padding: 3px 6px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
 
 
-.warning{
-  background-color: #E44B72;
-}
-
-.approved {
-  background-color: #2BB674;
-}
 
 
 
@@ -168,6 +201,7 @@
   right: 0;
   width: 100%;
   height: 100%;
+  @include transition(opacity .5s);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

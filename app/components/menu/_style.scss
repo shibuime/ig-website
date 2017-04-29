@@ -18,7 +18,7 @@
   li{
     display: inline-block;
     vertical-align: middle;
-    margin-left: 20px;
+    margin-left: 25px;
     a{
       display: block;
       padding: 5px 0;
@@ -27,7 +27,7 @@
       text-decoration: none;
       position: relative;
 
-      &:not(.login){
+      &:not(.Button){
         &:after{
           content: '';
           position: absolute;
@@ -49,27 +49,8 @@
         }
       }
 
-      &.login{
-        padding: 2px 12px;
-        border-radius: 30px;
-        box-shadow: 0 0 0 1px #fff;
-        @include transition(box-shadow .2s $easing);
-        &:before{
-          content: '';
-          @include border-radius(50px);
-          @include fullAbsBg;
-          z-index: -1;
-          @include transition(opacity .2s $easing);
-          @include horizontal-gradient($blue, $green);
-          opacity: 0;
-        }
-        &:hover{
-          box-shadow:  0 0 0 4px rgba(18, 168, 192, 0.6);
-          &:before{
-            opacity: .8;
-          }
-        }
-      }
+
+
 
 
     }
