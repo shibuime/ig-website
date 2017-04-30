@@ -3,8 +3,8 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
 import ClassNames from "classnames";
-import Icon from "../../components/icon/icon";
-import Button from "../../components/button/button";
+import Icon from "../icon/index";
+import Button from "../button/index";
 
 
 import './_style.scss';

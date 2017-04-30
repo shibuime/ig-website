@@ -1,0 +1,120 @@
+@import '../../css/globals';
+
+
+
+
+@include keyframes(featureImgIn){
+  from{
+    height: 0;
+  }
+  to{
+    height: 100%;
+  }
+}
+
+
+
+.Mission{
+
+  .features{
+    position: absolute;
+    top: 90px;
+    right: calc(12vw + 550px);
+    bottom: 50px;
+    @include display-flex;
+    @include flex-direction(column);
+    text-align: left;
+    width: calc(100vw - 12vw - 620px);
+    max-width: 680px;
+    li{
+      position: relative;
+      @include display-flex;
+      @include flex(1);
+      color: #fff;
+      overflow: hidden;
+      @include listAnimationDelay(150, 4);
+      //background-color: rgba(0,0,0,.5);
+
+      section{
+        position: relative;
+        padding: 30px;
+        @include align-self(center);
+        opacity: 0;
+        @include animation(fadeIn .7s $easing both);
+        @include animation-delay(inherit);
+      }
+      h4{
+        font-size: 3.1rem;
+        font-weight: bold;
+        margin-bottom: 3px;
+      }
+      p{
+        font-size: 1.6rem;
+        font-weight: 300;
+        opacity: .8;
+      }
+
+      &:not(:last-child){
+        margin-bottom: 15px;
+      }
+    }
+    .BGImg{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right : 0;
+      height: 0;
+      @include animation(featureImgIn .7s $easing both);
+      @include animation-delay(inherit);
+      background-color: #fff;
+
+      .BGImg-image{
+        background-position: bottom center;
+      }
+
+      &:after{
+        content: '';
+        @include fullAbsBg;
+        @include horizontal-gradient(rgba(0,0,0,.35), rgba(0,0,0,0));
+      }
+    }
+  }
+
+
+
+  .section-title{
+    right: 12%;
+    @include vertical-middle;
+
+    h2 .title-line span{
+      @include animation-delay(100ms);
+    }
+
+    p{
+      .title-line{
+        &:nth-of-type(1) span{
+          @include animation-delay(200ms);
+        }
+        &:nth-of-type(2) span{
+          @include animation-delay(300ms);
+        }
+      }
+    }
+
+    .Button{
+      opacity: 0;
+      @include animation(bottomIn .5s $easing 400ms both);
+    }
+
+
+  }
+
+
+
+}
+
+
+
+
+
+

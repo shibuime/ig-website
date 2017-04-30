@@ -1,0 +1,45 @@
+@import '../../css/globals';
+
+
+.Technology{
+
+
+
+  .section-title{
+    left: 12%;
+    top: 18vh;
+  }
+
+  h2 .title-line span{
+    @include animation-delay(100ms);
+  }
+  h3{
+    .title-line span{
+      @include animation-delay(200ms);
+    }
+    &:after{
+      @include animation(scaleRight .3s $easing 300ms both);
+    }
+  }
+
+  p{
+    .title-line{
+      &:nth-of-type(1) span{
+        @include animation-delay(400ms);
+      }
+      &:nth-of-type(2) span{
+        @include animation-delay(500ms);
+      }
+    }
+  }
+
+  .Button{
+    opacity: 0;
+    @include animation(bottomIn .5s $easing 600ms both);
+  }
+
+
+
+}
+
+

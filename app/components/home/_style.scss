@@ -5,20 +5,29 @@
 
 .Home{
   background-color:  #384446;
+  @include fullAbsBg;
+  overflow: hidden;
 
 
-  #wrapper{
-    #canvas-screen.visible{
-      opacity: .3;
-    }
-
-    &.slide-0, &.slide-1, &.slide-2, &.slide-3{
-      #canvas-screen.visible{
-        opacity: 1;
-      }
-    }
-
+  #canvas-screen.visible{
+    opacity: .3;
   }
+
+  &.slide-0, &.slide-1, &.slide-2, &.slide-3{
+    #canvas-screen.visible{
+      opacity: 1;
+    }
+  }
+
+
+  &.slide-0 .Hero{
+    @include transform(translateY(0));
+    h1{
+      opacity: 1;
+      @include transform(translateY(0));
+    }
+  }
+
 
 
   .Button{
@@ -27,98 +36,25 @@
 
 
 
-  .Home-title{
-    position: absolute;
-    top: 15vh;
-    color: #fff;
-    left: 12%;
-    @include transition(all .5s $easing);
-    @include transform(translateY(-200px));
-
-    h1{
-      opacity: 0;
-      @include transform(translateY(-50px));
-      font-size: 92px;
-      line-height: 1.2;
-      font-weight: 600;
-      margin-bottom: 5px;
-      @include transition(all .5s $easing);
-
-      .title-line{
-        &:nth-of-type(1) span{
-          @include animation-delay(200ms);
-        }
-        &:nth-of-type(2) span{
-          @include animation-delay(300ms);
-        }
-      }
-    }
-    h2{
-      font-size: 42px;
-      font-weight: 400;
-      font-family: $font-body;
-
-      .title-line{
-        &:nth-of-type(1) span{
-          @include animation-delay(400ms);
-        }
-        &:nth-of-type(2) span{
-          @include animation-delay(500ms);
-        }
-        &:nth-of-type(3) span{
-          @include animation-delay(600ms);
-        }
-        &:nth-of-type(4) span{
-          @include animation-delay(700ms);
-        }
-      }
-    }
 
 
 
-    .Button{
-      opacity: 0;
-      position: absolute;
-      @include animation(bottomIn .5s $easing 900ms both);
-    }
-
-  }
-
-
-
-  .slide-0{
-    .Home-title{
-      @include transform(translateY(0));
-      h1{
-        opacity: 1;
-        @include transform(translateY(0));
-      }
-    }
-  }
-  .slide-1{
-    .Button{
-      @include animation-delay(200ms);
-    }
-  }
-
-
-
-
-  #hero{
+  #hero-img{
     @include fullAbsBg;
     position: fixed;
     overflow: hidden;
     @include transition(all .5s $easing);
     .BGImg{
+      background-size: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
       background: url(/resources/images/hero-placeholder.jpg) bottom no-repeat;
       background-size: cover;
-      @include fullAbsBg;
       .BGImg-image{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
+        @include fullAbsBg;
         background-size: cover !important;
         background-position: bottom !important;
       }
@@ -127,7 +63,6 @@
     &.fold{
       bottom: 100vh;
     }
-
   }
 
 
@@ -166,68 +101,6 @@
       width: 420px;
       margin-top: 15px;
       font-size: 1.8rem;
-    }
-
-
-    //left (clarity)
-    &.l{
-      left: 12%;
-      top: 18vh;
-
-      h2 .title-line span{
-          @include animation-delay(300ms);
-      }
-      h3{
-        .title-line span{
-           @include animation-delay(400ms);
-        }
-        &:after{
-          @include animation(scaleRight .3s $easing 500ms both);
-        }
-      }
-
-      p{
-        .title-line{
-          &:nth-of-type(1) span{
-            @include animation-delay(600ms);
-          }
-          &:nth-of-type(2) span{
-            @include animation-delay(700ms);
-          }
-        }
-      }
-
-      .Button{
-        opacity: 0;
-        @include animation(bottomIn .5s $easing 800ms both);
-      }
-    }
-
-
-    //right (mission)
-    &.r{
-      right: 12%;
-      @include vertical-middle;
-
-      h2 .title-line span{
-        @include animation-delay(300ms);
-      }
-
-      p{
-        .title-line{
-          &:nth-of-type(1) span{
-            @include animation-delay(400ms);
-          }
-          &:nth-of-type(2) span{
-            @include animation-delay(500ms);
-          }
-        }
-      }
-
-      .Button{
-        opacity: 0;
-        @include animation(bottomIn .5s $easing 600ms both);
-      }
     }
 
   }
