@@ -164,7 +164,7 @@ export default class Home extends Component {
                 </ReactCSSTransitionGroup>
                 <ReactCSSTransitionGroup transitionName="FadeAnimation" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
                     {slideNum >= 4 &&  slideNum < 7 &&
-                        <Technology/>
+                        <Technology slideNum={slideNum}/>
                     }
                 </ReactCSSTransitionGroup>
                 <ReactCSSTransitionGroup transitionName="FadeAnimation" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
@@ -182,6 +182,14 @@ export default class Home extends Component {
 
 
 
+                <ReactCSSTransitionGroup transitionName="FadeAnimation" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
+					{slideNum === 0 &&
+                    <div className="scrollBtn" onClick={()=> this.goToScreen(1)}>
+                        <p>Scroll</p>
+                        <i/>
+                    </div>
+					}
+                </ReactCSSTransitionGroup>
 
                     <ul className="bullets">
 

@@ -1,0 +1,444 @@
+@import '../../css/globals';
+
+
+
+
+@include keyframes(techIn){
+  from{
+    @include transform(translateY(-40%));
+  }
+  to{
+    @include transform(translateY(-50%));
+  }
+
+}
+
+
+@include keyframes(ripples){
+  0%{
+    opacity: 0;
+    @include transform(scale(.8));
+  }
+  50%{
+    opacity: .5;
+    @include transform(scale(1.4));
+  }
+  100%{
+    opacity: 0;
+    @include transform(scale(2));
+  }
+}
+
+
+@include keyframes(icons1){
+  0%, 60%, 100%{
+    opacity: 0;
+  }
+  10%, 50%{
+    opacity: 1;
+  }
+}
+@include keyframes(icons2){
+  0%, 50%, 100%{
+    opacity: 0;
+  }
+  60%, 90%{
+    opacity: 1;
+  }
+}
+
+@include keyframes(emptyNetOdd){
+  0%{
+    opacity: 0;
+    @include transform(translate(-20px, 0) scale(0) rotate(-20deg))
+  }
+  33%{
+    opacity: 1;
+    @include transform(translate(10px, 90px) scale(.6) rotate(5deg))
+  }
+  66%{
+    opacity: 1;
+    @include transform(translate(90px, 220px) scale(.8) rotate(30deg))
+  }
+  100%{
+    opacity: 0;
+    @include transform(translate(140px, 400px) scale(.5) rotate(60deg))
+  }
+}
+
+@include keyframes(emptyNetEven){
+  0%{
+    opacity: 0;
+    @include transform(translate(30px, 0) scale(0) rotate(0deg))
+  }
+  30%{
+    opacity: 1;
+    @include transform(translate(-30px, 100px) scale(.7) rotate(-30deg))
+  }
+  70%{
+    opacity: 1;
+    @include transform(translate(-90px, 220px) scale(1) rotate(-90deg))
+  }
+  100%{
+    opacity: 0;
+    @include transform(translate(-140px, 400px) scale(.4) rotate(-230deg))
+  }
+}
+@include keyframes(emptyNetCenter){
+  0%{
+    opacity: 0;
+    @include transform(translate(30, 0) scale(0) rotate(120deg))
+  }
+  30%{
+    opacity: 1;
+    @include transform(translate(-30px, 100px) scale(.5) rotate(-30deg))
+  }
+  70%{
+    opacity: 1;
+    @include transform(translate(10px, 220px) scale(.7) rotate(90deg))
+  }
+  100%{
+    opacity: 0;
+    @include transform(translate(5px, 400px) scale(.3) rotate(-50deg))
+  }
+}
+
+
+
+
+
+
+
+//menu
+.TechnologySection{
+  @include animation(techIn .7s $easing both);
+  top: 50%;
+  position: absolute;
+  right: 10%;
+  color: #fff;
+
+  svg{
+    fill: none;
+  }
+
+  h5{
+    position: absolute;
+    font-size: 2.1rem;
+    text-align: left;
+    left: 50%;
+    @include animation(softFromBottom .5s 1s $easing both);
+  }
+
+  &.tech-1{
+    height: 600px;
+    width: 420px;
+
+
+    .funnel{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 418px;
+      @include svg-line('1', 450);
+    }
+
+    h5{
+      bottom: 50px;
+    }
+
+
+
+    .networks{
+      position: absolute;
+      bottom: 200px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 350px;
+      height: 290px;
+
+
+      li{
+        position: absolute;
+        width: 70px;
+        height: 70px;
+
+        &:before{
+          content: '';
+          @include fullAbsBg;
+          @include transform(rotate(45deg));
+          border: 1px solid;
+        }
+
+        .Icon{
+          font-size: 3.2rem;
+          @include center-transform;
+        }
+      }
+
+
+
+
+      li.running{
+        top: -100px;
+        opacity: 0;
+
+        .Icon{
+          opacity: .8;
+        }
+
+        &:nth-child(odd){
+          left: 0;
+          @include animation(emptyNetOdd 3s linear infinite);
+
+        }
+        &:nth-child(even){
+          right: 0;
+          @include animation(emptyNetEven 4s linear infinite);
+        }
+        &:nth-child(3n){
+          left: 100px;
+          @include animation(emptyNetCenter 3.4s linear infinite);
+        }
+
+        &:nth-of-type(9){
+          @include animation-delay(1.5s);
+        }
+        &:nth-of-type(10){
+          @include animation-delay(2s);
+        }
+        &:nth-of-type(11){
+          @include animation-delay(2.7s);
+        }
+        &:nth-of-type(12){
+          @include animation-delay(1.1s);
+        }
+        &:nth-of-type(13){
+          @include animation-delay(3.7s);
+        }
+        &:nth-of-type(14){
+          @include animation-delay(.3s);
+        }
+      }
+
+
+      li:not(.running){
+        @include animation(softFromTop .5s $easing both);
+        @include listAnimationDelay(200, 8);
+
+
+        .Icon{
+          opacity: 0;
+          &:nth-of-type(1){
+            @include animation(icons1 4s $easing infinite);
+          }
+          &:nth-of-type(2){
+            @include animation(icons2 4s $easing infinite);
+          }
+        }
+        &:nth-child(3n) .Icon{
+          @include animation-delay(1s);
+        }
+        &:nth-child(4n) .Icon{
+          @include animation-delay(2s);
+        }
+        &:nth-child(5n) .Icon{
+          @include animation-delay(1.5s);
+        }
+
+
+        &:nth-child(1){
+          bottom: 200px;
+          left: 80px;
+        }
+        &:nth-child(2){
+          bottom: 200px;
+          right: 80px;
+        }
+        &:nth-child(3){
+          bottom: 140px;
+          left: 20px;
+        }
+        &:nth-child(4){
+          bottom: 140px;
+          left: 140px;
+        }
+        &:nth-child(5){
+          bottom: 140px;
+          right: 20px;
+        }
+        &:nth-child(6){
+          bottom: 80px;
+          left: 80px;
+        }
+        &:nth-child(7){
+          bottom: 80px;
+          right: 80px
+        }
+        &:nth-child(8){
+          bottom: 20px;
+          left: 140px;
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+  &.tech-2{
+    height: 600px;
+    width: 490px;
+
+
+    .ripples{
+      @include center-transform;
+      width: 100px;
+      height: 100px;
+      margin-top: -25px;
+      i{
+        width: 100%;
+        height: 100%;
+        @include round;
+        position: absolute;
+        border: 1px solid #fff;
+        opacity: 0;
+
+        &:nth-child(1){
+          @include animation(ripples 3s linear infinite);
+        }
+        &:nth-child(2){
+          @include animation(ripples 3s .4s linear infinite);
+        }
+        &:nth-child(3){
+          @include animation(ripples 3s .8s linear infinite);
+        }
+        &:nth-child(4){
+          @include animation(ripples 3s 1.2s linear infinite);
+        }
+        &:nth-child(5){
+          @include animation(ripples 3s 1.6s linear infinite);
+        }
+      }
+    }
+
+
+    .circles{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 490px;
+      .loop{
+        @include svg-line('2', 1050);
+      }
+      .brain{
+        @include svg-line('3', 300);
+      }
+      .pointers{
+        @include svg-line('4', 200);
+      }
+    }
+
+
+    .brain-icons{
+      @include center-transform;
+      width: 300px;
+      height: 300px;
+      margin-top: -15px;
+      .Icon{
+        @include round;
+        padding: 3px;
+        display: block;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 2.5rem;
+        border: 1px solid;
+        backface-visibility: hidden;
+        position: absolute;
+        @include animation(scaleIn .3s $easing both);
+        @include listAnimationDelay(250, 8);
+
+        &.icon-linkedin{
+          top: -39px;
+          left: 90px;
+        }
+        &.icon-google{
+          top: 67px;
+          left: 25px;
+        }
+        &.icon-facebook{
+           top: 52px;
+           right: 12px;
+        }
+        &.icon-gaurdian{
+          top: 161px;
+          left: 8px;
+        }
+        &.icon-youtube{
+         right: 70px;
+         top: -12px;
+        }
+        &.icon-buffer{
+         top: 264px;
+         left: 135px;;
+        }
+        &.icon-twitter{
+          right: 26px;
+          top: 187px;
+        }
+        &.icon-bing{
+          right: -35px;
+          top: 94px;
+        }
+
+
+      }
+    }
+
+
+
+    h5{
+      bottom: 30px;
+      margin-left: 20px;
+    }
+  }
+
+
+
+
+
+
+  &.tech-3{
+    height: 640px;
+    width: 390px;
+
+    .files{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 390px;
+      @include svg-line('5', 650);
+    }
+
+    h5{
+      top: 60px;
+      margin-left: 20px;
+    }
+  }
+
+
+
+
+
+}
+
+
+
+

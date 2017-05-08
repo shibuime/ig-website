@@ -1,6 +1,21 @@
 @import '../../css/globals';
 
 
+@include keyframes(scroll){
+  0%{
+    @include transform(translateY(-100%));
+    background-color: #fff;
+  }
+  50%, 60%{
+    background-color: $green;
+    @include transform(translateY(0));
+  }
+  100%{
+    background-color: $turquoise;
+    @include transform(translateY(100%));
+  }
+}
+
 
 
 .Home{
@@ -34,6 +49,38 @@
     margin-top: 40px;
   }
 
+
+
+  .scrollBtn{
+    position: absolute;
+    right: 35px;
+    @include vertical-middle;
+    margin-top: 60px;
+    color: #fff;
+    padding: 2px;
+    cursor: pointer;
+    p{
+      white-space: nowrap;
+      font-size: 1.6rem;
+      position: absolute;
+      @include transform-origin(left);
+      @include transform(rotate(90deg));
+    }
+    i{
+      position: absolute;
+      left: -1px;
+      top: 65px;
+      height: 120px;
+      width: 3px;
+      overflow: hidden;
+      &:before{
+        content: '';
+        @include fullAbsBg;
+        background-color: $turquoise;
+        @include animation(scroll 2s $easing infinite);
+      }
+    }
+  }
 
 
 
