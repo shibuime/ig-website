@@ -84,8 +84,8 @@ export default class Button extends Component {
                 </svg>
 
                 <h5>
-                    Comprehensive <br/>
-                    report
+                    Immediate Insights & <br/>
+                    Ongoing Monitoring
                 </h5>
             </div>
         );

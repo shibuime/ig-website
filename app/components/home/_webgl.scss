@@ -224,6 +224,7 @@
     outline: none;
   }
   #canvas-outer {
+    z-index: 0;
     position: relative;
     display: -webkit-box;
     display: -webkit-flex;

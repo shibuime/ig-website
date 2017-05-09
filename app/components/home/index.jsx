@@ -69,6 +69,16 @@ export default class Home extends Component {
 
         if(num === 0 || num > lastCameraPos) return;
         goo.SystemBus.emit('setCameraPosition'+(num-1));
+
+
+        //hide top number
+        const topNum = document.querySelector('.top-number');
+        if(!topNum) return;
+        if(num === 3){
+			topNum.style.display = 'block';
+        }else{
+			topNum.style.display = 'none';
+		}
     }
 
     @autobind
