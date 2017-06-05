@@ -6,6 +6,7 @@ import {observer} from "mobx-react";
 import ClassNames from "classnames";
 import Webgl from "./webgl";
 import Hero from "./hero";
+import City from "./city";
 import Technology from "./technology";
 import Mission from "./mission";
 import Footer from "../footer/";
@@ -70,15 +71,6 @@ export default class Home extends Component {
         if(num === 0 || num > lastCameraPos) return;
         goo.SystemBus.emit('setCameraPosition'+(num-1));
 
-
-        //hide top number
-        const topNum = document.querySelector('.top-number');
-        if(!topNum) return;
-        if(num === 3){
-			topNum.style.display = 'block';
-        }else{
-			topNum.style.display = 'none';
-		}
     }
 
     @autobind
@@ -168,8 +160,13 @@ export default class Home extends Component {
 
 
                 <ReactCSSTransitionGroup transitionName="FadeAnimation" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
-                    {slideNum >= 0 &&  slideNum < 4 &&
-                    <Hero slideNum={slideNum} goToScreen={this.goToScreen}/>
+                    {slideNum === 0 &&
+                    <Hero slideNum={slideNum}/>
+                    }
+                </ReactCSSTransitionGroup>
+                <ReactCSSTransitionGroup transitionName="FadeAnimation" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
+					{slideNum >= 1 &&  slideNum < 4 &&
+                    <City goToScreen={this.goToScreen}/>
                     }
                 </ReactCSSTransitionGroup>
                 <ReactCSSTransitionGroup transitionName="FadeAnimation" transitionEnterTimeout={300} transitionLeaveTimeout={300}>

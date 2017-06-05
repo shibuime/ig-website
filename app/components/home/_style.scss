@@ -35,15 +35,6 @@
   }
 
 
-  &.slide-0 .Hero{
-    @include transform(translateY(0));
-    h1{
-      opacity: 1;
-      @include transform(translateY(0));
-    }
-  }
-
-
 
   .Button{
     margin-top: 40px;
